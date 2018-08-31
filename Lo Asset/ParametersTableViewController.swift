@@ -24,7 +24,9 @@ class ParametersTableViewController: UITableViewController {
         super.viewDidLoad()
 //        self.title = "Paramètres"
         apikeyValue.text = "abdqs324114fdqkb4"
-    
+//        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Add", style: .plain, target: self, action: #selector(addTapped))
+        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .compose, target: self, action: #selector(addTapped))
+
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
     }
@@ -32,6 +34,9 @@ class ParametersTableViewController: UITableViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    @objc func addTapped (sender:UIButton) {
+        print("add pressed")
     }
 
     // MARK: - Table view data source
