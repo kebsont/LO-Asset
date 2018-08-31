@@ -66,7 +66,7 @@
             </objects>
             <point key="canvasLocation" x="-812" y="762"/>
         </scene>
-        <!--LO Asset-->
+        <!--Paramètres-->
         <scene sceneID="trE-qN-cBf">
             <objects>
                 <tableViewController id="Coc-Y3-TSg" customClass="ParametersTableViewController" customModule="Lo_Asset" customModuleProvider="target" sceneMemberID="viewController">
@@ -360,8 +360,26 @@
                         </connections>
                     </tableView>
                     <tabBarItem key="tabBarItem" title="Paramètres" image="icons8-settings-filled-40" id="7xP-oN-0w4"/>
-                    <navigationItem key="navigationItem" title="LO Asset" id="mSw-Md-cP1">
+                    <navigationItem key="navigationItem" id="mSw-Md-cP1">
+                        <nil key="title"/>
                         <barButtonItem key="backBarButtonItem" title="Paramètres" id="fVo-JM-bXj"/>
+                        <view key="titleView" contentMode="scaleToFill" id="OD9-q3-5N1">
+                            <rect key="frame" x="187.5" y="22" width="0.0" height="0.0"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <subviews>
+                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8DD-Rf-WSf">
+                                    <rect key="frame" x="-2" y="-669" width="4" height="175"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="175" id="cqd-dT-A8B"/>
+                                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="175" id="jfD-rn-375"/>
+                                    </constraints>
+                                </imageView>
+                            </subviews>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <constraints>
+                                <constraint firstAttribute="bottom" secondItem="8DD-Rf-WSf" secondAttribute="bottom" constant="494" id="x02-ez-WO8"/>
+                            </constraints>
+                        </view>
                     </navigationItem>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>

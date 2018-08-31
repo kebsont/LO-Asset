@@ -29,6 +29,11 @@ class ParametersTableViewController: UITableViewController {
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
+        
+        if let navController = navigationController {
+            System.clearNavigationBar(forBar: navController.navigationBar)
+            navController.view.backgroundColor = .clear
+        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -38,6 +43,14 @@ class ParametersTableViewController: UITableViewController {
     @objc func addTapped (sender:UIButton) {
         print("add pressed")
     }
+    struct System {
+        static func clearNavigationBar(forBar navBar: UINavigationBar) {
+            navBar.setBackgroundImage(UIImage(), for: .default)
+            navBar.shadowImage = UIImage()
+            navBar.isTranslucent = true
+        }
+    }
+   
 
     // MARK: - Table view data source
 
