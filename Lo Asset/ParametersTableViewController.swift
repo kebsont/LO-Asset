@@ -19,7 +19,11 @@ class ParametersTableViewController: UITableViewController {
     @IBAction func reinitAction(_ sender: Any) {
         apikeyValue.text = "Pas de clef d'API"
     }
-
+   
+    @IBAction func manuelAction(_ sender: UIButton) {
+        showInputDialog()
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 //        self.title = "Paramètres"
@@ -49,6 +53,25 @@ class ParametersTableViewController: UITableViewController {
             navBar.shadowImage = UIImage()
             navBar.isTranslucent = true
         }
+    }
+    func showInputDialog(){
+        let alertController = UIAlertController(title: "Clef d'API", message: "Merci de saisir la Clef d'API", preferredStyle: .alert)
+        let confirmAction = UIAlertAction(title: "Entrer", style: .default){(_) in
+            let apikey = alertController.textFields?[0].text
+            self.apikeyValue.text = apikey
+        }
+        let cancelAction = UIAlertAction(title: "Annuler", style: .cancel){(_) in}
+        alertController.addTextField{(textField) in
+            textField.placeholder = "XXXXXXXXXXXXXXXXX"
+        }
+        
+        //adding the action to dialogBox
+        alertController.addAction(confirmAction)
+        alertController.addAction(cancelAction)
+        
+        //finally show the dialog box
+        self.present(alertController, animated: true, completion: nil)
+        
     }
    
 

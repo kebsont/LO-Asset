@@ -235,7 +235,7 @@
                                                         <color key="titleColor" red="1" green="0.14913141730000001" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     </state>
                                                     <connections>
-                                                        <action selector="manuelButtonAction:" destination="Coc-Y3-TSg" eventType="touchDragEnter" id="t6s-ff-O3l"/>
+                                                        <action selector="manuelAction:" destination="Coc-Y3-TSg" eventType="touchUpInside" id="50j-Gx-WOQ"/>
                                                     </connections>
                                                 </button>
                                                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nMl-6H-bsP">
