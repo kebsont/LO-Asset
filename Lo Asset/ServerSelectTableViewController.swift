@@ -1,39 +1,32 @@
 //
-//  ParametersTableViewController.swift
+//  ServerSelectTableViewController.swift
 //  Lo Asset
 //
-//  Created by Moustapha Kebe on 30/08/2018.
+//  Created by Moustapha Kebe on 31/08/2018.
 //  Copyright © 2018 Orange. All rights reserved.
 //
 
 import UIKit
 
-class ParametersTableViewController: UITableViewController {
-    @IBOutlet weak var serverLabel: UILabel!
-    @IBOutlet weak var protocoleValue: UILabel!
-    @IBOutlet weak var protocoleLabel: UILabel!
-    @IBOutlet weak var serverValue: UILabel!
-    @IBOutlet weak var apikeyValue: UILabel!
-    @IBOutlet weak var usernameValue: UILabel!
-    @IBOutlet weak var idClientValue: UILabel!
-    @IBAction func reinitAction(_ sender: Any) {
-        apikeyValue.text = "Pas de clef d'API"
-    }
+class ServerSelectTableViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-//        self.title = "Paramètres"
-        apikeyValue.text = "abdqs324114fdqkb4"
-    
+//        self.title = "Serveur"
+//        self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Paramètres", style: UIBarButtonItemStyle.done, target: self, action: "checkenTapped")
+
+        // Uncomment the following line to preserve selection between presentations
+        // self.clearsSelectionOnViewWillAppear = false
+
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
     }
-
+var checked = [Bool]()
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
+    
     // MARK: - Table view data source
 
 //    override func numberOfSections(in tableView: UITableView) -> Int {
