@@ -34,10 +34,10 @@ class ParametersTableViewController: UITableViewController {
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
         
-        if let navController = navigationController {
-            System.clearNavigationBar(forBar: navController.navigationBar)
-            navController.view.backgroundColor = .clear
-        }
+//        if let navController = navigationController {
+//            System.clearNavigationBar(forBar: navController.navigationBar)
+//            navController.view.backgroundColor = .clear
+//        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -47,13 +47,13 @@ class ParametersTableViewController: UITableViewController {
     @objc func addTapped (sender:UIButton) {
         print("add pressed")
     }
-    struct System {
-        static func clearNavigationBar(forBar navBar: UINavigationBar) {
-            navBar.setBackgroundImage(UIImage(), for: .default)
-            navBar.shadowImage = UIImage()
-            navBar.isTranslucent = true
-        }
-    }
+//    struct System {
+//        static func clearNavigationBar(forBar navBar: UINavigationBar) {
+//            navBar.setBackgroundImage(UIImage(), for: .default)
+//            navBar.shadowImage = UIImage()
+//            navBar.isTranslucent = true
+//        }
+//    }
     func showInputDialog(){
         let alertController = UIAlertController(title: "Clef d'API", message: "Merci de saisir la Clef d'API", preferredStyle: .alert)
         let confirmAction = UIAlertAction(title: "Entrer", style: .default){(_) in
