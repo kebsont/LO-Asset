@@ -6,6 +6,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -42,7 +43,7 @@
                         </textAttributes>
                     </navigationBar>
                     <connections>
-                        <segue destination="ZKh-kL-lKG" kind="relationship" relationship="rootViewController" id="r1Y-UD-Fb1"/>
+                        <segue destination="qcV-Aj-67n" kind="relationship" relationship="rootViewController" id="y2b-v7-zkX"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PRp-CH-Lom" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -343,7 +344,7 @@
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <color key="backgroundColor" red="1" green="0.14913141730000001" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                                    <state key="normal" title="  REINIT PARAMETRES DE L'APP  ">
+                                                    <state key="normal" title="  RÉINIT PARAMÈTRES DE L'APP  ">
                                                         <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     </state>
                                                     <connections>
@@ -455,7 +456,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="piN-E0-IMf" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-774" y="2282"/>
+            <point key="canvasLocation" x="-1308" y="2282"/>
         </scene>
         <!--Server Select Table View Controller-->
         <scene sceneID="uCf-9t-CyY">
@@ -513,7 +514,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="YGa-iY-pEq" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2" y="2282"/>
+            <point key="canvasLocation" x="-302" y="2282"/>
         </scene>
         <!--LO Asset-->
         <scene sceneID="pDC-Y8-hXe">
@@ -648,7 +649,7 @@
                                                     <rect key="frame" x="16" y="5" width="33" height="33"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 </imageView>
-                                                <slider opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="fRg-y9-nnZ">
+                                                <slider opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="70" minValue="-20" maxValue="120" translatesAutoresizingMaskIntoConstraints="NO" id="fRg-y9-nnZ">
                                                     <rect key="frame" x="241" y="8" width="118" height="30"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 </slider>
@@ -846,35 +847,50 @@
             <point key="canvasLocation" x="-2.3999999999999999" y="1510.7946026986508"/>
         </scene>
         <!--LO Asset-->
-        <scene sceneID="qsc-66-hCD">
+        <scene sceneID="OOb-hf-Fhk">
             <objects>
-                <tableViewController id="ZKh-kL-lKG" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="TH4-Pp-kH2">
+                <viewController id="qcV-Aj-67n" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Wst-jl-MbT">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Ecran d'Accueil" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZYo-Cq-2CE">
+                                <rect key="frame" x="16" y="71" width="116" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="v1.0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Grk-LN-leG">
+                                <rect key="frame" x="328" y="71" width="31" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.0" green="0.58980089430000004" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="egQ-sA-K5W">
+                                <rect key="frame" x="292" y="402" width="67" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.0" green="0.58980089430000004" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <state key="normal" title="MÀJ">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                            </button>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="LO_Frame_ENG-2" translatesAutoresizingMaskIntoConstraints="NO" id="j2x-ad-9kq">
+                                <rect key="frame" x="16" y="106" width="343" height="269"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="kPw-Vc-dr7">
-                                <rect key="frame" x="0.0" y="28" width="375" height="44"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="kPw-Vc-dr7" id="jGy-sp-cfX">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                </tableViewCellContentView>
-                            </tableViewCell>
-                        </prototypes>
-                        <connections>
-                            <outlet property="dataSource" destination="ZKh-kL-lKG" id="hh4-I1-7nu"/>
-                            <outlet property="delegate" destination="ZKh-kL-lKG" id="Cd0-63-pYU"/>
-                        </connections>
-                    </tableView>
-                    <tabBarItem key="tabBarItem" title="Ressources" image="icons8-download-from-the-cloud-40" id="jgd-ce-Xme"/>
-                    <navigationItem key="navigationItem" title="LO Asset" id="x0a-c4-xSb"/>
+                        <viewLayoutGuide key="safeArea" id="YXr-ph-LIc"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Ressources" image="icons8-download-from-the-cloud-40" id="TuH-hW-It3"/>
+                    <navigationItem key="navigationItem" title="LO Asset" id="AjP-eg-Yf8"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
-                </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="fNe-h7-0rb" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="sdx-un-ESR" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="969" y="1512"/>
+            <point key="canvasLocation" x="968.79999999999995" y="1516.1919040479761"/>
         </scene>
         <!--Tab BarVC-->
         <scene sceneID="yl2-sM-qoP">
@@ -898,6 +914,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="LO_Frame_ENG-2" width="237" height="237"/>
         <image name="icons8-clouds-filled-40" width="40" height="40"/>
         <image name="icons8-document-filled-40" width="40" height="40"/>
         <image name="icons8-download-from-the-cloud-40" width="40" height="40"/>
