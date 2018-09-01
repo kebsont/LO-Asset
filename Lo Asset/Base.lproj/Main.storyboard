@@ -519,7 +519,7 @@
         <!--LO Asset-->
         <scene sceneID="pDC-Y8-hXe">
             <objects>
-                <tableViewController id="B6W-RS-5Hm" sceneMemberID="viewController">
+                <tableViewController id="B6W-RS-5Hm" customClass="SimulerTableViewController" customModule="Lo_Asset" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="WJh-Ar-Xtp">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -652,9 +652,12 @@
                                                 <slider opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="70" minValue="-20" maxValue="120" translatesAutoresizingMaskIntoConstraints="NO" id="fRg-y9-nnZ">
                                                     <rect key="frame" x="241" y="8" width="118" height="30"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <connections>
+                                                        <action selector="tempValueChanged:" destination="B6W-RS-5Hm" eventType="valueChanged" id="exl-3f-fGj"/>
+                                                    </connections>
                                                 </slider>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="18°" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FIu-eK-IFE">
-                                                    <rect key="frame" x="209" y="11" width="26" height="21"/>
+                                                    <rect key="frame" x="182" y="11" width="53" height="21"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
@@ -674,12 +677,15 @@
                                                     <rect key="frame" x="16" y="5" width="34" height="33"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 </imageView>
-                                                <slider opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="6Qc-ir-RB4">
+                                                <slider opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="10" minValue="0.0" maxValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="6Qc-ir-RB4">
                                                     <rect key="frame" x="241" y="6" width="118" height="30"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <connections>
+                                                        <action selector="humidValueChanged:" destination="B6W-RS-5Hm" eventType="valueChanged" id="hVK-EI-vNi"/>
+                                                    </connections>
                                                 </slider>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="57%" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qvl-gE-lXD">
-                                                    <rect key="frame" x="201" y="12" width="34" height="21"/>
+                                                    <rect key="frame" x="182" y="12" width="53" height="21"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
@@ -699,12 +705,15 @@
                                                     <rect key="frame" x="16" y="5" width="34" height="33"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 </imageView>
-                                                <slider opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="EMs-Ce-T7G">
+                                                <slider opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="10" minValue="0.0" maxValue="10000" translatesAutoresizingMaskIntoConstraints="NO" id="EMs-Ce-T7G">
                                                     <rect key="frame" x="241" y="6" width="118" height="30"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <connections>
+                                                        <action selector="rpmValueChanged:" destination="B6W-RS-5Hm" eventType="valueChanged" id="NTP-Tf-Vhs"/>
+                                                    </connections>
                                                 </slider>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="0 rpm" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sx1-pw-zJO">
-                                                    <rect key="frame" x="189" y="11" width="46" height="21"/>
+                                                    <rect key="frame" x="147" y="11" width="88" height="21"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
@@ -724,12 +733,15 @@
                                                     <rect key="frame" x="16" y="5" width="34" height="33"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 </imageView>
-                                                <slider opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="lJG-ab-SNT">
+                                                <slider opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="25" minValue="0.0" maxValue="2000" translatesAutoresizingMaskIntoConstraints="NO" id="lJG-ab-SNT">
                                                     <rect key="frame" x="241" y="6" width="118" height="30"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <connections>
+                                                        <action selector="co2ValueChanged:" destination="B6W-RS-5Hm" eventType="valueChanged" id="r8i-L4-7iE"/>
+                                                    </connections>
                                                 </slider>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="400 ppm" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Lp4-Fu-kKF">
-                                                    <rect key="frame" x="165" y="10" width="70" height="21"/>
+                                                    <rect key="frame" x="134" y="10" width="101" height="21"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
@@ -749,12 +761,15 @@
                                                     <rect key="frame" x="16" y="5" width="34" height="33"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 </imageView>
-                                                <slider opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="OlB-Fm-aI6">
+                                                <slider opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="40" minValue="0.0" maxValue="4000" translatesAutoresizingMaskIntoConstraints="NO" id="OlB-Fm-aI6">
                                                     <rect key="frame" x="241" y="6" width="118" height="30"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <connections>
+                                                        <action selector="pressionValueChanged:" destination="B6W-RS-5Hm" eventType="valueChanged" id="fgI-L7-aZm"/>
+                                                    </connections>
                                                 </slider>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="1000 mBars" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="byf-lj-Fu2">
-                                                    <rect key="frame" x="143" y="10" width="92" height="21"/>
+                                                    <rect key="frame" x="131" y="10" width="104" height="21"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
@@ -841,6 +856,19 @@
                     <tabBarItem key="tabBarItem" title="Simuler" image="icons8-phonelink-ring-38" id="dNd-Zs-R0z"/>
                     <navigationItem key="navigationItem" title="LO Asset" id="55h-zx-nGe"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="co2Label" destination="Lp4-Fu-kKF" id="ha7-sT-6hb"/>
+                        <outlet property="co2Slider" destination="lJG-ab-SNT" id="BIR-8s-Z1m"/>
+                        <outlet property="co2ValueChanged" destination="OlB-Fm-aI6" id="F9l-A4-G5V"/>
+                        <outlet property="humidLabel" destination="qvl-gE-lXD" id="lRp-ga-YnV"/>
+                        <outlet property="humiditeSlider" destination="6Qc-ir-RB4" id="fNw-Go-3uJ"/>
+                        <outlet property="pressionLabel" destination="byf-lj-Fu2" id="hGF-oq-IRS"/>
+                        <outlet property="pressionSlider" destination="OlB-Fm-aI6" id="mGb-fU-yNV"/>
+                        <outlet property="rpmLabel" destination="sx1-pw-zJO" id="w06-Da-6PS"/>
+                        <outlet property="rpmSlider" destination="EMs-Ce-T7G" id="tZX-bc-oIl"/>
+                        <outlet property="tempLabel" destination="FIu-eK-IFE" id="Gp5-Rv-ctL"/>
+                        <outlet property="temperatureSlider" destination="fRg-y9-nnZ" id="L28-pA-gww"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="D3o-iZ-V21" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
