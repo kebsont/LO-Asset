@@ -399,6 +399,7 @@
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="apikeyValue" destination="aiv-5q-jP9" id="j2s-jK-7Ao"/>
+                        <outlet property="deviceModel" destination="vdJ-hI-Jxb" id="RYj-4V-ffQ"/>
                         <outlet property="idClientValue" destination="ckS-Qd-BOW" id="QGY-ed-Cer"/>
                         <outlet property="protocoleLabel" destination="t6s-yi-hW4" id="UsZ-A5-OFW"/>
                         <outlet property="protocoleValue" destination="Wcy-Q2-T7j" id="GpO-71-LuR"/>
