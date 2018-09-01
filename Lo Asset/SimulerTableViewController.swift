@@ -9,6 +9,7 @@
 import UIKit
 
 class SimulerTableViewController: UITableViewController {
+    @IBOutlet weak var telemetrieSwitch: UISwitch!
     @IBOutlet weak var temperatureSlider: UISlider!
     @IBOutlet weak var tempLabel: UILabel!
     @IBOutlet weak var humidLabel: UILabel!
@@ -22,6 +23,21 @@ class SimulerTableViewController: UITableViewController {
     @IBOutlet weak var pressionSlider: UISlider!
     
     @IBOutlet weak var humiditeSlider: UISlider!
+    @IBAction func changeTelemetrie(_ sender: UISwitch) {
+        if telemetrieSwitch.isOn {
+            temperatureSlider.isEnabled = false
+            humiditeSlider.isEnabled = false
+            rpmSlider.isEnabled = false
+            coSlider.isEnabled = false
+            pressionSlider.isEnabled = false
+        }else{
+            temperatureSlider.isEnabled = true
+            humiditeSlider.isEnabled = true
+            rpmSlider.isEnabled = true
+            coSlider.isEnabled = true
+            pressionSlider.isEnabled = true
+        }
+    }
     @IBAction func humidValueChanged(_ sender: UISlider) {
         let currentHumid = Int(sender.value)
         humidLabel.text = "\(currentHumid)%"
@@ -45,6 +61,7 @@ class SimulerTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        telemetrieSwitch.isOn = false
     }
    
     override func didReceiveMemoryWarning() {
