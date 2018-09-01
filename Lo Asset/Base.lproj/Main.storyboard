@@ -823,21 +823,14 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="0,00000°" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ixo-IQ-W1x">
-                                                    <rect key="frame" x="120" y="12" width="73" height="21"/>
+                                                    <rect key="frame" x="120" y="12" width="100" height="21"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="0,00000°" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zvh-iH-3iB">
-                                                    <rect key="frame" x="215" y="12" width="73" height="21"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="/" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3q4-5a-lr0">
-                                                    <rect key="frame" x="201" y="11" width="6" height="21"/>
+                                                    <rect key="frame" x="230" y="12" width="106" height="21"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
@@ -847,6 +840,13 @@
                                                     <rect key="frame" x="16" y="0.0" width="40" height="38"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="/" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3q4-5a-lr0">
+                                                    <rect key="frame" x="220" y="12" width="6" height="21"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                             </subviews>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -866,6 +866,8 @@
                         <outlet property="coSlider" destination="lJG-ab-SNT" id="HBq-oE-Iia"/>
                         <outlet property="humidLabel" destination="qvl-gE-lXD" id="lRp-ga-YnV"/>
                         <outlet property="humiditeSlider" destination="6Qc-ir-RB4" id="fNw-Go-3uJ"/>
+                        <outlet property="locLatitude" destination="ixo-IQ-W1x" id="dic-Tb-TYX"/>
+                        <outlet property="locLongitude" destination="Zvh-iH-3iB" id="xWq-fm-vuT"/>
                         <outlet property="pressionLabel" destination="byf-lj-Fu2" id="lCT-0q-6W8"/>
                         <outlet property="pressionSlider" destination="OlB-Fm-aI6" id="mGb-fU-yNV"/>
                         <outlet property="rpmLabel" destination="sx1-pw-zJO" id="w06-Da-6PS"/>

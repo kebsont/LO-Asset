@@ -24,6 +24,8 @@ class SimulerTableViewController: UITableViewController, CLLocationManagerDelega
     @IBOutlet weak var pressionSlider: UISlider!
     
     @IBOutlet weak var humiditeSlider: UISlider!
+    @IBOutlet weak var locLatitude: UILabel!
+    @IBOutlet weak var locLongitude: UILabel!
     @IBAction func changeTelemetrie(_ sender: UISwitch) {
         if telemetrieSwitch.isOn {
             temperatureSlider.isEnabled = false
@@ -78,7 +80,8 @@ class SimulerTableViewController: UITableViewController, CLLocationManagerDelega
 
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]){
         let locValue:CLLocationCoordinate2D = manager.location!.coordinate
-        print("locations: = \(locValue.latitude) \(locValue.longitude)")
+        locLatitude.text = "\(locValue.latitude)°"
+        locLongitude.text = "\(locValue.longitude)°"
     }
    
 
