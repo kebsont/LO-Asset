@@ -7,8 +7,9 @@
 //
 
 import UIKit
-
-class SimulerTableViewController: UITableViewController {
+import MapKit
+class SimulerTableViewController: UITableViewController, CLLocationManagerDelegate {
+    var locationManager = CLLocationManager()
     @IBOutlet weak var telemetrieSwitch: UISwitch!
     @IBOutlet weak var temperatureSlider: UISlider!
     @IBOutlet weak var tempLabel: UILabel!
@@ -62,6 +63,12 @@ class SimulerTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         telemetrieSwitch.isOn = false
+        self.locationManager.requestWhenInUseAuthorization()
+        if CLLocationManager.locationServicesEnabled(){
+            locationManager.delegate = self
+            locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
+            locationManager.startUpdatingLocation()
+        }
     }
    
     override func didReceiveMemoryWarning() {
@@ -69,6 +76,10 @@ class SimulerTableViewController: UITableViewController {
         // Dispose of any resources that can be recreated.
     }
 
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]){
+        let locValue:CLLocationCoordinate2D = manager.location!.coordinate
+        print("locations: = \(locValue.latitude) \(locValue.longitude)")
+    }
    
 
 }
