@@ -14,8 +14,10 @@ class SimulerTableViewController: UITableViewController {
     @IBOutlet weak var humidLabel: UILabel!
     @IBOutlet weak var rpmLabel: UILabel!
     @IBOutlet weak var rpmSlider: UISlider!
+ 
     @IBOutlet weak var coLabel: UILabel!
     @IBOutlet weak var coSlider: UISlider!
+    
     @IBOutlet weak var pressionLabel: UILabel!
     @IBOutlet weak var pressionSlider: UISlider!
     

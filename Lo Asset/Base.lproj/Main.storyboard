@@ -645,10 +645,6 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="icons8-thermometer-40" translatesAutoresizingMaskIntoConstraints="NO" id="ryS-Ug-5r3">
-                                                    <rect key="frame" x="16" y="5" width="33" height="33"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                </imageView>
                                                 <slider opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="70" minValue="-20" maxValue="120" translatesAutoresizingMaskIntoConstraints="NO" id="fRg-y9-nnZ">
                                                     <rect key="frame" x="241" y="8" width="118" height="30"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -663,6 +659,10 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="icons8-thermometer-40" translatesAutoresizingMaskIntoConstraints="NO" id="ryS-Ug-5r3">
+                                                    <rect key="frame" x="16" y="5" width="33" height="33"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                </imageView>
                                             </subviews>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -673,10 +673,6 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="icons8-drop-of-blood-40" translatesAutoresizingMaskIntoConstraints="NO" id="Vks-5p-G7h">
-                                                    <rect key="frame" x="16" y="5" width="34" height="33"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                </imageView>
                                                 <slider opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="10" minValue="0.0" maxValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="6Qc-ir-RB4">
                                                     <rect key="frame" x="241" y="6" width="118" height="30"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -691,6 +687,10 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="icons8-drop-of-blood-40" translatesAutoresizingMaskIntoConstraints="NO" id="Vks-5p-G7h">
+                                                    <rect key="frame" x="16" y="4" width="34" height="33"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                </imageView>
                                             </subviews>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -737,7 +737,7 @@
                                                     <rect key="frame" x="241" y="6" width="118" height="30"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <connections>
-                                                        <action selector="co2ValueChanged:" destination="B6W-RS-5Hm" eventType="valueChanged" id="r8i-L4-7iE"/>
+                                                        <action selector="coValueChanged:" destination="B6W-RS-5Hm" eventType="valueChanged" id="cOt-jE-6U8"/>
                                                     </connections>
                                                 </slider>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="400 ppm" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Lp4-Fu-kKF">
@@ -765,7 +765,7 @@
                                                     <rect key="frame" x="241" y="6" width="118" height="30"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <connections>
-                                                        <action selector="pressionValueChanged:" destination="B6W-RS-5Hm" eventType="valueChanged" id="fgI-L7-aZm"/>
+                                                        <action selector="pressionValueChanged:" destination="B6W-RS-5Hm" eventType="valueChanged" id="hGt-I0-dyF"/>
                                                     </connections>
                                                 </slider>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="1000 mBars" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="byf-lj-Fu2">
@@ -857,12 +857,11 @@
                     <navigationItem key="navigationItem" title="LO Asset" id="55h-zx-nGe"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
-                        <outlet property="co2Label" destination="Lp4-Fu-kKF" id="ha7-sT-6hb"/>
-                        <outlet property="co2Slider" destination="lJG-ab-SNT" id="BIR-8s-Z1m"/>
-                        <outlet property="co2ValueChanged" destination="OlB-Fm-aI6" id="F9l-A4-G5V"/>
+                        <outlet property="coLabel" destination="Lp4-Fu-kKF" id="Eok-DX-XdQ"/>
+                        <outlet property="coSlider" destination="lJG-ab-SNT" id="HBq-oE-Iia"/>
                         <outlet property="humidLabel" destination="qvl-gE-lXD" id="lRp-ga-YnV"/>
                         <outlet property="humiditeSlider" destination="6Qc-ir-RB4" id="fNw-Go-3uJ"/>
-                        <outlet property="pressionLabel" destination="byf-lj-Fu2" id="hGF-oq-IRS"/>
+                        <outlet property="pressionLabel" destination="byf-lj-Fu2" id="lCT-0q-6W8"/>
                         <outlet property="pressionSlider" destination="OlB-Fm-aI6" id="mGb-fU-yNV"/>
                         <outlet property="rpmLabel" destination="sx1-pw-zJO" id="w06-Da-6PS"/>
                         <outlet property="rpmSlider" destination="EMs-Ce-T7G" id="tZX-bc-oIl"/>
