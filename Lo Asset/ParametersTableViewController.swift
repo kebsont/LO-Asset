@@ -78,6 +78,7 @@ class ParametersTableViewController: UITableViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         deviceModel.text = UIDevice.current.modelName
+        idClientValue.text = "\(UIDevice.current.modelName) \(String(describing: UIDevice.current.identifierForVendor))"
         print(UIDevice.current.modelName)
         
     }
