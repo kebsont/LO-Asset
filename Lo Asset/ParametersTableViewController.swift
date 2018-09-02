@@ -17,6 +17,7 @@ class ParametersTableViewController: UITableViewController {
     @IBOutlet weak var usernameValue: UILabel!
     @IBOutlet weak var idClientValue: UILabel!
     @IBOutlet weak var deviceModel: UILabel!
+    @IBOutlet weak var idAsset: UILabel!
     @IBAction func reinitAction(_ sender: Any) {
         apikeyValue.text = "Pas de clef d'API"
     }
@@ -79,7 +80,7 @@ class ParametersTableViewController: UITableViewController {
         super.viewWillAppear(animated)
         deviceModel.text = UIDevice.current.modelName
         idClientValue.text = "\(UIDevice.current.modelName) \(String(describing: UIDevice.current.identifierForVendor))"
-        print(UIDevice.current.modelName)
+        idAsset.text = "\(String(describing: UIDevice.current.identifierForVendor))"
         
     }
 
