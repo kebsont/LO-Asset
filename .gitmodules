@@ -1,0 +1,3 @@
+[submodule "mqtt"]
+	path = mqtt
+	url = https://github.com/novastone-media/MQTT-Client-Framework.git
