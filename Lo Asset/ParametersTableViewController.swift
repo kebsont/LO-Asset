@@ -8,7 +8,18 @@
 
 import UIKit
 
-class ParametersTableViewController: UITableViewController {
+class ParametersTableViewController: UITableViewController, ServerSelectionDelegate {
+    func didSelectServerType(serverType: ServerType) {
+        switch serverType {
+        case .orangeM2MProd:
+            serverValue.text = "OrangeM2M Prod"
+            break
+        case .other:
+            serverValue.text = "other"
+            break
+        }
+    }
+    
     @IBOutlet weak var serverLabel: UILabel!
     @IBOutlet weak var protocoleValue: UILabel!
     @IBOutlet weak var protocoleLabel: UILabel!
@@ -40,6 +51,14 @@ class ParametersTableViewController: UITableViewController {
 //            System.clearNavigationBar(forBar: navController.navigationBar)
 //            navController.view.backgroundColor = .clear
 //        }
+        
+        
+        let userDefaults = UserDefaults.standard
+        let currentServerTypeValue = userDefaults.integer(forKey: SERVER_TYPE_KEY)
+        
+        if let serverType = ServerType(rawValue: currentServerTypeValue) {
+            self.didSelectServerType(serverType: serverType)
+        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -48,6 +67,14 @@ class ParametersTableViewController: UITableViewController {
     }
     @objc func addTapped (sender:UIButton) {
         print("add pressed")
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "pushServerType" {
+            if let serverTypeSelectionTableViewController = segue.destination as? ServerSelectionTableViewController {
+                serverTypeSelectionTableViewController.parametersViewController = self
+            }
+        }
     }
 //    struct System {
 //        static func clearNavigationBar(forBar navBar: UINavigationBar) {
@@ -78,9 +105,15 @@ class ParametersTableViewController: UITableViewController {
    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        deviceModel.text = UIDevice.current.modelName
-        idClientValue.text = "\(UIDevice.current.modelName) \(String(describing: UIDevice.current.identifierForVendor))"
-        idAsset.text = "\(String(describing: UIDevice.current.identifierForVendor))"
+        
+        let modelName = UIDevice.current.modelName
+        
+        deviceModel.text = modelName
+        
+        if let identifierForVendor = UIDevice.current.identifierForVendor {
+            idClientValue.text = "\(modelName) \(identifierForVendor)"
+            idAsset.text = "\(identifierForVendor)"
+        }
         
     }
 
