@@ -11,6 +11,7 @@
 		7D157AF121394DF8002E8484 /* ServerSelectTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D157AF021394DF8002E8484 /* ServerSelectTableViewController.swift */; };
 		7D157AF321398347002E8484 /* TabBarVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D157AF221398347002E8484 /* TabBarVC.swift */; };
 		7D157AF5213A3B39002E8484 /* SimulerTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D157AF4213A3B39002E8484 /* SimulerTableViewController.swift */; };
+		7D157B0C213D5969002E8484 /* mqtt in Resources */ = {isa = PBXBuildFile; fileRef = 7D157B0B213D5969002E8484 /* mqtt */; };
 		7DEA4275212D5D8900CA900E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DEA4274212D5D8900CA900E /* AppDelegate.swift */; };
 		7DEA427C212D5D8900CA900E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7DEA427A212D5D8900CA900E /* Main.storyboard */; };
 		7DEA427E212D5D8A00CA900E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7DEA427D212D5D8A00CA900E /* Assets.xcassets */; };
@@ -22,6 +23,7 @@
 		7D157AF021394DF8002E8484 /* ServerSelectTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServerSelectTableViewController.swift; sourceTree = "<group>"; };
 		7D157AF221398347002E8484 /* TabBarVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarVC.swift; sourceTree = "<group>"; };
 		7D157AF4213A3B39002E8484 /* SimulerTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimulerTableViewController.swift; sourceTree = "<group>"; };
+		7D157B0B213D5969002E8484 /* mqtt */ = {isa = PBXFileReference; lastKnownFileType = folder; path = mqtt; sourceTree = "<group>"; };
 		7DEA4271212D5D8900CA900E /* Lo Asset.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Lo Asset.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		7DEA4274212D5D8900CA900E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7DEA427B212D5D8900CA900E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -60,6 +62,7 @@
 		7DEA4273212D5D8900CA900E /* Lo Asset */ = {
 			isa = PBXGroup;
 			children = (
+				7D157B0B213D5969002E8484 /* mqtt */,
 				7DEA4274212D5D8900CA900E /* AppDelegate.swift */,
 				7DEA427A212D5D8900CA900E /* Main.storyboard */,
 				7D157AF221398347002E8484 /* TabBarVC.swift */,
@@ -133,6 +136,7 @@
 			files = (
 				7DEA4281212D5D8A00CA900E /* LaunchScreen.storyboard in Resources */,
 				7DEA427E212D5D8A00CA900E /* Assets.xcassets in Resources */,
+				7D157B0C213D5969002E8484 /* mqtt in Resources */,
 				7DEA427C212D5D8900CA900E /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
