@@ -15,7 +15,7 @@ class ParametersTableViewController: UITableViewController, ServerSelectionDeleg
             serverValue.text = "OrangeM2M Prod"
             break
         case .other:
-            serverValue.text = "other"
+            serverValue.text = "OrangeM2M PreProd"
             break
         }
     }
