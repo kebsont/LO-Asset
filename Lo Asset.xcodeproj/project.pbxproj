@@ -16,6 +16,7 @@
 		7D157B10213D61AE002E8484 /* MQTTClient.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7D157B0E213D6123002E8484 /* MQTTClient.framework */; };
 		7D157B11213D61AE002E8484 /* MQTTClient.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 7D157B0E213D6123002E8484 /* MQTTClient.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		7D157B14213D676F002E8484 /* ServerSelectionTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D157B13213D676F002E8484 /* ServerSelectionTableViewController.swift */; };
+		7D2D3B56214166B500B7FBBC /* AppPreferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D2D3B55214166B400B7FBBC /* AppPreferences.swift */; };
 		7DEA4275212D5D8900CA900E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DEA4274212D5D8900CA900E /* AppDelegate.swift */; };
 		7DEA427C212D5D8900CA900E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7DEA427A212D5D8900CA900E /* Main.storyboard */; };
 		7DEA427E212D5D8A00CA900E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7DEA427D212D5D8A00CA900E /* Assets.xcassets */; };
@@ -47,6 +48,7 @@
 		7D157B0B213D5969002E8484 /* mqtt */ = {isa = PBXFileReference; lastKnownFileType = folder; path = mqtt; sourceTree = "<group>"; };
 		7D157B0E213D6123002E8484 /* MQTTClient.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MQTTClient.framework; path = mqtt/MQTTClient/MQTTClient.framework; sourceTree = "<group>"; };
 		7D157B13213D676F002E8484 /* ServerSelectionTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServerSelectionTableViewController.swift; sourceTree = "<group>"; };
+		7D2D3B55214166B400B7FBBC /* AppPreferences.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppPreferences.swift; sourceTree = "<group>"; };
 		7DEA4271212D5D8900CA900E /* Lo Asset.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Lo Asset.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		7DEA4274212D5D8900CA900E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7DEA427B212D5D8900CA900E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -88,9 +90,18 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		7D2D3B542141669800B7FBBC /* utils */ = {
+			isa = PBXGroup;
+			children = (
+				7D2D3B55214166B400B7FBBC /* AppPreferences.swift */,
+			);
+			path = utils;
+			sourceTree = "<group>";
+		};
 		7DEA4268212D5D8900CA900E = {
 			isa = PBXGroup;
 			children = (
+				7D2D3B542141669800B7FBBC /* utils */,
 				7DEA4273212D5D8900CA900E /* Lo Asset */,
 				7DEA4272212D5D8900CA900E /* Products */,
 				7D157B0D213D6123002E8484 /* Frameworks */,
@@ -200,8 +211,6 @@
 			buildActionMask = 2147483647;
 			files = (
 			);
-			inputFileListPaths = (
-			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-Lo Asset/Pods-Lo Asset-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/CocoaAsyncSocket/CocoaAsyncSocket.framework",
@@ -210,8 +219,6 @@
 				"${BUILT_PRODUCTS_DIR}/SwiftyTimer/SwiftyTimer.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-			);
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CocoaAsyncSocket.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CocoaMQTT.framework",
@@ -228,15 +235,11 @@
 			buildActionMask = 2147483647;
 			files = (
 			);
-			inputFileListPaths = (
-			);
 			inputPaths = (
 				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
 				"${PODS_ROOT}/Manifest.lock",
 			);
 			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
 			outputPaths = (
 				"$(DERIVED_FILE_DIR)/Pods-Lo Asset-checkManifestLockResult.txt",
 			);
@@ -254,6 +257,7 @@
 			files = (
 				7D157AF321398347002E8484 /* TabBarVC.swift in Sources */,
 				7D157AF5213A3B39002E8484 /* SimulerTableViewController.swift in Sources */,
+				7D2D3B56214166B500B7FBBC /* AppPreferences.swift in Sources */,
 				7DEA4275212D5D8900CA900E /* AppDelegate.swift in Sources */,
 				7D157AF121394DF8002E8484 /* ServerSelectTableViewController.swift in Sources */,
 				7D157AEF21381D97002E8484 /* ParametersTableViewController.swift in Sources */,

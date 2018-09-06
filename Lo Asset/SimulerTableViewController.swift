@@ -9,11 +9,15 @@
 import UIKit
 import MapKit
 import CocoaMQTT
+import os.log
 class SimulerTableViewController: UITableViewController, CLLocationManagerDelegate {
     let defaultHost = "liveobjects.orange-business.com"
     var locationManager = CLLocationManager()
     var mqtt: CocoaMQTT?
     var msg: String?
+    var idClient: String?
+    var nomUtilisateur: String?
+    var apiKey: String?
     @IBOutlet weak var connectButton: UIButton!
     @IBOutlet weak var telemetrieSwitch: UISwitch!
     @IBOutlet weak var temperatureSlider: UISlider!
@@ -76,10 +80,22 @@ class SimulerTableViewController: UITableViewController, CLLocationManagerDelega
             locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
             locationManager.startUpdatingLocation()
         }
+        
+        
         navigationController?.interactivePopGestureRecognizer?.isEnabled = false
         tabBarController?.delegate = self
         msg = tabBarController?.selectedViewController?.tabBarItem.title
         mqttSetting()
+    }
+    override func viewWillAppear(_ animated: Bool) {
+        let userDefaults = UserDefaults.standard
+//        userDefaults.synchronize()
+        apiKey = userDefaults.string(forKey: "apikeyValue")
+        idClient = userDefaults.string(forKey: "idClientValue")
+        nomUtilisateur = userDefaults.string(forKey: "usernameValue")
+//        print(apiKey!)
+//        print(nomUtilisateur!)
+//        print(idClient!)
     }
    
     override func didReceiveMemoryWarning() {
@@ -97,10 +113,14 @@ class SimulerTableViewController: UITableViewController, CLLocationManagerDelega
     }
    
     func mqttSetting() {
-        let clientID = "CocoaMQTT-\(msg!)" 
+        let userDefaults = UserDefaults.standard
+        apiKey = userDefaults.string(forKey: "apikeyValue")
+        idClient = userDefaults.string(forKey: "idClientValue")
+        nomUtilisateur = userDefaults.string(forKey: "usernameValue")
+        let clientID = idClient!
         mqtt = CocoaMQTT(clientID: clientID, host: defaultHost, port: 1883)
-        mqtt!.username = "json+device"
-        mqtt!.password = "ad842965e9f94bd5833b5fa7caf3086f"
+        mqtt!.username = nomUtilisateur!
+        mqtt!.password = apiKey!
         mqtt!.willMessage = CocoaMQTTWill(topic: "/cmd", message: "dieout")
         mqtt!.keepAlive = 60
         mqtt!.delegate = self
@@ -126,9 +146,10 @@ extension UITableViewController: CocoaMQTTDelegate {
     
     public func mqtt(_ mqtt: CocoaMQTT, didConnectAck ack: CocoaMQTTConnAck) {
         print("ack: \(ack)")
-        
         if ack == .accept {
-            mqtt.subscribe("cmd+", qos: CocoaMQTTQOS.qos1)
+            NSLog("Connecté avec succès")
+//            connectButton.text = "SE DÉCONNECTER"
+            mqtt.subscribe("dev/data", qos: CocoaMQTTQOS.qos1)
             
 //            let chatViewController = storyboard?.instantiateViewController(withIdentifier: "ParametersTableViewController") as? ParametersTableViewController
 //            chatViewController?.mqtt = mqtt

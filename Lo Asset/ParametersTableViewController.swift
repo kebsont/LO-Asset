@@ -40,7 +40,7 @@ class ParametersTableViewController: UITableViewController, ServerSelectionDeleg
     override func viewDidLoad() {
         super.viewDidLoad()
 //        self.title = "Paramètres"
-        apikeyValue.text = "abdqs324114fdqkb4"
+        apikeyValue.text = "ad842965e9f94bd5833b5fa7caf3086f"
 //        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Add", style: .plain, target: self, action: #selector(addTapped))
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .compose, target: self, action: #selector(addTapped))
 
@@ -59,6 +59,10 @@ class ParametersTableViewController: UITableViewController, ServerSelectionDeleg
         if let serverType = ServerType(rawValue: currentServerTypeValue) {
             self.didSelectServerType(serverType: serverType)
         }
+        userDefaults.set(idClientValue.text, forKey: "idClientValue")
+        userDefaults.set(usernameValue.text, forKey: "usernameValue")
+        userDefaults.set(apikeyValue.text, forKey: "apikeyValue")
+        userDefaults.synchronize()
     }
 
     override func didReceiveMemoryWarning() {
@@ -76,18 +80,15 @@ class ParametersTableViewController: UITableViewController, ServerSelectionDeleg
             }
         }
     }
-//    struct System {
-//        static func clearNavigationBar(forBar navBar: UINavigationBar) {
-//            navBar.setBackgroundImage(UIImage(), for: .default)
-//            navBar.shadowImage = UIImage()
-//            navBar.isTranslucent = true
-//        }
-//    }
+
     func showInputDialog(){
         let alertController = UIAlertController(title: "Clef d'API", message: "Merci de saisir la Clef d'API", preferredStyle: .alert)
         let confirmAction = UIAlertAction(title: "Entrer", style: .default){(_) in
             let apikey = alertController.textFields?[0].text
             self.apikeyValue.text = apikey
+            let userDefaults = UserDefaults.standard
+            userDefaults.set(self.apikeyValue.text, forKey: "apikeyValue")
+            userDefaults.synchronize()
         }
         let cancelAction = UIAlertAction(title: "Annuler", style: .cancel){(_) in}
         alertController.addTextField{(textField) in
@@ -105,15 +106,19 @@ class ParametersTableViewController: UITableViewController, ServerSelectionDeleg
    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
+        let userDefaults = UserDefaults.standard
         let modelName = UIDevice.current.modelName
         
         deviceModel.text = modelName
         
         if let identifierForVendor = UIDevice.current.identifierForVendor {
-            idClientValue.text = "\(modelName)\(identifierForVendor)"
+            idClientValue.text = "\(modelName)-\(identifierForVendor)"
+            userDefaults.set(idClientValue.text, forKey: "idClientValue")
+            userDefaults.synchronize()
             idAsset.text = "\(identifierForVendor)"
         }
+        userDefaults.set(apikeyValue.text, forKey: "apikeyValue")
+        userDefaults.synchronize()
         
     }
 
