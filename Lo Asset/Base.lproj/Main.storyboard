@@ -556,6 +556,9 @@
                                                     <state key="normal" title="CONNECTER">
                                                         <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     </state>
+                                                    <connections>
+                                                        <action selector="connectToServer" destination="B6W-RS-5Hm" eventType="touchUpInside" id="rrd-Af-8yP"/>
+                                                    </connections>
                                                 </button>
                                             </subviews>
                                         </tableViewCellContentView>
@@ -878,6 +881,7 @@
                     <connections>
                         <outlet property="coLabel" destination="Lp4-Fu-kKF" id="Eok-DX-XdQ"/>
                         <outlet property="coSlider" destination="lJG-ab-SNT" id="HBq-oE-Iia"/>
+                        <outlet property="connectButton" destination="Pxc-LQ-KLh" id="KDn-7U-aFg"/>
                         <outlet property="humidLabel" destination="qvl-gE-lXD" id="lRp-ga-YnV"/>
                         <outlet property="humiditeSlider" destination="6Qc-ir-RB4" id="fNw-Go-3uJ"/>
                         <outlet property="locLatitude" destination="ixo-IQ-W1x" id="dic-Tb-TYX"/>

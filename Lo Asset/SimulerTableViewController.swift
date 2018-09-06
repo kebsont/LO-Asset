@@ -8,8 +8,13 @@
 
 import UIKit
 import MapKit
+import CocoaMQTT
 class SimulerTableViewController: UITableViewController, CLLocationManagerDelegate {
+    let defaultHost = "liveobjects.orange-business.com"
     var locationManager = CLLocationManager()
+    var mqtt: CocoaMQTT?
+    var msg: String?
+    @IBOutlet weak var connectButton: UIButton!
     @IBOutlet weak var telemetrieSwitch: UISwitch!
     @IBOutlet weak var temperatureSlider: UISlider!
     @IBOutlet weak var tempLabel: UILabel!
@@ -71,6 +76,10 @@ class SimulerTableViewController: UITableViewController, CLLocationManagerDelega
             locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
             locationManager.startUpdatingLocation()
         }
+        navigationController?.interactivePopGestureRecognizer?.isEnabled = false
+        tabBarController?.delegate = self
+        msg = tabBarController?.selectedViewController?.tabBarItem.title
+        mqttSetting()
     }
    
     override func didReceiveMemoryWarning() {
@@ -83,6 +92,121 @@ class SimulerTableViewController: UITableViewController, CLLocationManagerDelega
         locLatitude.text = "\(locValue.latitude)°"
         locLongitude.text = "\(locValue.longitude)°"
     }
+    @IBAction func connectToServer() {
+        mqtt!.connect()
+    }
    
+    func mqttSetting() {
+        let clientID = "CocoaMQTT-\(msg!)" 
+        mqtt = CocoaMQTT(clientID: clientID, host: defaultHost, port: 1883)
+        mqtt!.username = "json+device"
+        mqtt!.password = "ad842965e9f94bd5833b5fa7caf3086f"
+        mqtt!.willMessage = CocoaMQTTWill(topic: "/cmd", message: "dieout")
+        mqtt!.keepAlive = 60
+        mqtt!.delegate = self
+    }
 
+}
+
+extension UITableViewController: CocoaMQTTDelegate {
+    // Optional ssl CocoaMQTTDelegate
+    public func mqtt(_ mqtt: CocoaMQTT, didReceive trust: SecTrust, completionHandler: @escaping (Bool) -> Void) {
+        print("trust: \(trust)")
+        /// Validate the server certificate
+        ///
+        /// Some custom validation...
+        ///
+        /// if validatePassed {
+        ///     completionHandler(true)
+        /// } else {
+        ///     completionHandler(false)
+        /// }
+        completionHandler(true)
+    }
+    
+    public func mqtt(_ mqtt: CocoaMQTT, didConnectAck ack: CocoaMQTTConnAck) {
+        print("ack: \(ack)")
+        
+        if ack == .accept {
+            mqtt.subscribe("cmd+", qos: CocoaMQTTQOS.qos1)
+            
+//            let chatViewController = storyboard?.instantiateViewController(withIdentifier: "ParametersTableViewController") as? ParametersTableViewController
+//            chatViewController?.mqtt = mqtt
+//            navigationController!.pushViewController(chatViewController!, animated: true)
+        }
+    }
+    
+   public func mqtt(_ mqtt: CocoaMQTT, didStateChangeTo state: CocoaMQTTConnState) {
+        print("new state: \(state)")
+    }
+    
+   public func mqtt(_ mqtt: CocoaMQTT, didPublishMessage message: CocoaMQTTMessage, id: UInt16) {
+        print("message: \(message.string.description), id: \(id)")
+    }
+    
+   public func mqtt(_ mqtt: CocoaMQTT, didPublishAck id: UInt16) {
+        print("id: \(id)")
+    }
+    
+  public  func mqtt(_ mqtt: CocoaMQTT, didReceiveMessage message: CocoaMQTTMessage, id: UInt16 ) {
+        print("message: \(message.string.description), id: \(id)")
+        
+//        let name = NSNotification.Name(rawValue: "MQTTMessageNotification" \ msg!)
+//        NotificationCenter.default.post(name: name, object: self, userInfo: ["message": message.string!, "topic": message.topic])
+    }
+    
+  public  func mqtt(_ mqtt: CocoaMQTT, didSubscribeTopic topic: String) {
+        print("topic: \(topic)")
+    }
+    
+  public  func mqtt(_ mqtt: CocoaMQTT, didUnsubscribeTopic topic: String) {
+        print("topic: \(topic)")
+    }
+    
+ public   func mqttDidPing(_ mqtt: CocoaMQTT) {
+        print()
+    }
+    
+  public  func mqttDidReceivePong(_ mqtt: CocoaMQTT) {
+        print()
+    }
+    
+  public  func mqttDidDisconnect(_ mqtt: CocoaMQTT, withError err: Error?) {
+        print("\(err.description)")
+    }
+}
+
+extension UITableViewController: UITabBarControllerDelegate {
+    // Prevent automatic popToRootViewController on double-tap of UITabBarController
+    public func tabBarController(_ tabBarController: UITabBarController, shouldSelect viewController: UIViewController) -> Bool {
+        return viewController != tabBarController.selectedViewController
+    }
+}
+
+//extension UITableViewController {
+//    func print(_ message: String = "", fun: String = #function) {
+//        let names = fun.components(separatedBy: ":")
+//        var prettyName: String
+//        if names.count == 1 {
+//            prettyName = names[0]
+//        } else {
+//            prettyName = names[1]
+//        }
+//
+//        if fun == "mqttDidDisconnect(_:withError:)" {
+//            prettyName = "didDisconect"
+//        }
+//
+//        print("[print] [\(prettyName)]: \(message)")
+//    }
+//}
+
+extension Optional {
+    // Unwarp optional value for printing log only
+    var description: String {
+        if let warped = self {
+            return "\(warped)"
+        }
+        return ""
+    }
 }

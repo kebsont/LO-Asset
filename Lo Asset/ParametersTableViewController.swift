@@ -111,7 +111,7 @@ class ParametersTableViewController: UITableViewController, ServerSelectionDeleg
         deviceModel.text = modelName
         
         if let identifierForVendor = UIDevice.current.identifierForVendor {
-            idClientValue.text = "\(modelName) \(identifierForVendor)"
+            idClientValue.text = "\(modelName)\(identifierForVendor)"
             idAsset.text = "\(identifierForVendor)"
         }
         
