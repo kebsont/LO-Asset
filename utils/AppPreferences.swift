@@ -34,4 +34,5 @@ class AppPreferences{
     func getAutoReconnectStatus() -> Bool {
         return AUTO_RECONNECT == true
     }
+    
 }
