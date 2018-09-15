@@ -25,3 +25,4 @@ struct InfoStatus: Codable {
         self.version = version
     }
 }
+

@@ -34,5 +34,30 @@ class AppPreferences{
     func getAutoReconnectStatus() -> Bool {
         return AUTO_RECONNECT == true
     }
+    func getApiKey() -> String {
+        return API_KEY
+    }
+    func setApiKey(apiKey: String)  {
+        let userDefaults = UserDefaults.standard
+        userDefaults.set(apiKey, forKey: "apikeyValue")
+        userDefaults.synchronize()
+    }
+    func clearPreferences(){
+        UserDefaults.standard.removePersistentDomain(forName: Bundle.main.bundleIdentifier!)
+    }
     
+//    func setCfgParameter(cfgKey: String, cfgP: DeviceConfig.CfgParameter ) {
+//        let userDefaults = UserDefaults.standard
+//        switch (cfgP.getType()) {
+//        case "bin":
+//            userDefaults.set(cfgKey, forKey: cfgP.getValue() as! String)
+//            break
+//        case "str":
+//            userDefaults.set(cfgKey, forKey: cfgP.getValue() as! String)
+//            break;
+//       
+//        default:
+//            break;
+//        }
+//    }
 }

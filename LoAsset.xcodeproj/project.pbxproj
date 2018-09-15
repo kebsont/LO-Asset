@@ -117,7 +117,6 @@
 		7D2D3B542141669800B7FBBC /* utils */ = {
 			isa = PBXGroup;
 			children = (
-				7D2D3B55214166B400B7FBBC /* AppPreferences.swift */,
 			);
 			path = utils;
 			sourceTree = "<group>";
@@ -145,6 +144,7 @@
 		7DEA4273212D5D8900CA900E /* LoAsset */ = {
 			isa = PBXGroup;
 			children = (
+				7D2D3B55214166B400B7FBBC /* AppPreferences.swift */,
 				7D2D3B652141FA3D00B7FBBC /* Garden_Lille.csv */,
 				7D157B0B213D5969002E8484 /* mqtt */,
 				7DEA4274212D5D8900CA900E /* AppDelegate.swift */,
@@ -451,6 +451,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 839TGUWAQP;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/mqtt/MQTTClient",
@@ -473,6 +474,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 839TGUWAQP;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/mqtt/MQTTClient",

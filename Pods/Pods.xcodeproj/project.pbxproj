@@ -49,6 +49,7 @@
 		7648D80C1099FD7FC76AC7A525E04054 /* CSV.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55348EC97992454E3C6FA9FC12693245 /* CSV.swift */; };
 		7A3B653232F975028D05B03DE12658EB /* BinaryReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BB25365880AFA52C22BACF8C91BDE88 /* BinaryReader.swift */; };
 		7C604B1C8E8DB1E96864F36555EBCD02 /* MQTTClient-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 76AB95E26EBBC0BE92A2390F668F1153 /* MQTTClient-dummy.m */; };
+		7D306189214A8B5E001CF33A /* ParamKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D306188214A8B5E001CF33A /* ParamKey.swift */; };
 		7F3CD4E774C9016C56C66E655D745C7D /* GCDTimer.h in Headers */ = {isa = PBXBuildFile; fileRef = 033ED1BB563C1FE55726EEE45F7248BA /* GCDTimer.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		84D92FC60D98C077AB3A6D56AEBE8FEB /* GCDAsyncSocket.h in Headers */ = {isa = PBXBuildFile; fileRef = 096937EC50DCF2DDCF9000BF5CBDB2A4 /* GCDAsyncSocket.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		868278D8159DFFC14CDD28A7C36B823A /* MQTTSSLSecurityPolicyDecoder.m in Sources */ = {isa = PBXBuildFile; fileRef = EFFD733AA4CA8CFA5ADE752ACC56283A /* MQTTSSLSecurityPolicyDecoder.m */; };
@@ -214,6 +215,7 @@
 		7844CA8E3C82998A7396E387CDBC6584 /* MQTTSession.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = MQTTSession.h; path = MQTTClient/MQTTClient/MQTTSession.h; sourceTree = "<group>"; };
 		79E9EA15AC309E4D5AD8B032ADFB1C76 /* Pods-LoAsset-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-LoAsset-acknowledgements.plist"; sourceTree = "<group>"; };
 		7D0F17A2B9F8AAAB136DA48DF3EF5858 /* MQTTCFSocketTransport.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = MQTTCFSocketTransport.h; path = MQTTClient/MQTTClient/MQTTCFSocketTransport.h; sourceTree = "<group>"; };
+		7D306188214A8B5E001CF33A /* ParamKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParamKey.swift; sourceTree = "<group>"; };
 		81AC48096B4A7357725ED889EC34B109 /* MQTTProperties.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = MQTTProperties.h; path = MQTTClient/MQTTClient/MQTTProperties.h; sourceTree = "<group>"; };
 		85AECA5C0DA36A4206C483AC0E578EAA /* GCDAsyncSocket.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = GCDAsyncSocket.m; path = Source/GCD/GCDAsyncSocket.m; sourceTree = "<group>"; };
 		88AFF9846ACB1D500948936F53E78E0A /* CSVError.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = CSVError.swift; path = Sources/CSV/CSVError.swift; sourceTree = "<group>"; };
@@ -438,6 +440,7 @@
 		7DB346D0F39D3F0E887471402A8071AB = {
 			isa = PBXGroup;
 			children = (
+				7D306188214A8B5E001CF33A /* ParamKey.swift */,
 				93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */,
 				D83E405234D07768B1B218CC1F034BBB /* Frameworks */,
 				3385E424CF1667A92F4E1B352A4FAC1C /* Pods */,
@@ -792,6 +795,11 @@
 			attributes = {
 				LastSwiftUpdateCheck = 0930;
 				LastUpgradeCheck = 0940;
+				TargetAttributes = {
+					EB9F16A11CCB7B75DFD4C14783C83019 = {
+						LastSwiftMigration = 0940;
+					};
+				};
 			};
 			buildConfigurationList = 2D8E8EC45A3A1A1D94AE762CB5028504 /* Build configuration list for PBXProject "Pods" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -894,6 +902,7 @@
 				4EB100FF9229539CA4094551779BF2BE /* CocoaAsyncSocket-dummy.m in Sources */,
 				AC166C66311BCAAAD1D9289A80E51CCF /* GCDAsyncSocket.m in Sources */,
 				30169A0026017D898DAC180CC3218F79 /* GCDAsyncUdpSocket.m in Sources */,
+				7D306189214A8B5E001CF33A /* ParamKey.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1119,6 +1128,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 3E65B0AB600AC9A5414AC53BEC8D344B /* CocoaAsyncSocket.xcconfig */;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
@@ -1284,6 +1294,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 3E65B0AB600AC9A5414AC53BEC8D344B /* CocoaAsyncSocket.xcconfig */;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
@@ -1304,6 +1315,7 @@
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
