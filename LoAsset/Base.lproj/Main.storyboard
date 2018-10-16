@@ -558,7 +558,7 @@
                                                         <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     </state>
                                                     <connections>
-                                                        <action selector="connectToServer" destination="B6W-RS-5Hm" eventType="touchUpInside" id="rrd-Af-8yP"/>
+                                                        <action selector="connectOrDisconnect:forEvent:" destination="B6W-RS-5Hm" eventType="touchUpInside" id="QSB-ZW-eh2"/>
                                                     </connections>
                                                 </button>
                                             </subviews>

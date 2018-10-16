@@ -18,6 +18,16 @@ class SimulerTableViewController: UITableViewController, CLLocationManagerDelega
     var nomUtilisateur: String?
     var apiKey: String?
     @IBOutlet weak var connectButton: UIButton!
+    @IBAction func connectOrDisconnect(_ sender: UIButton, forEvent event: UIEvent) {
+        let currentLabel = connectButton.titleLabel!.text!
+                if currentLabel == "CONNECTER" {
+                    connectToServer()
+                    sender.setTitle("DECONNECTER", for: .normal)
+                }else{
+                    mqtt!.disconnect()
+                    connectButton.setTitle("CONNECTER", for: .normal)
+                }
+    }
     @IBOutlet weak var telemetrieSwitch: UISwitch!
     @IBOutlet weak var temperatureSlider: UISlider!
     @IBOutlet weak var tempLabel: UILabel!
@@ -80,7 +90,6 @@ class SimulerTableViewController: UITableViewController, CLLocationManagerDelega
             locationManager.startUpdatingLocation()
         }
         
-        
         navigationController?.interactivePopGestureRecognizer?.isEnabled = false
         tabBarController?.delegate = self
         msg = tabBarController?.selectedViewController?.tabBarItem.title
@@ -92,9 +101,6 @@ class SimulerTableViewController: UITableViewController, CLLocationManagerDelega
         apiKey = userDefaults.string(forKey: "apikeyValue")
         idClient = userDefaults.string(forKey: "idClientValue")
         nomUtilisateur = userDefaults.string(forKey: "usernameValue")
-//                print(apiKey!)
-//                print(nomUtilisateur!)
-//                print(idClient!)
     }
     
     override func didReceiveMemoryWarning() {
@@ -107,9 +113,11 @@ class SimulerTableViewController: UITableViewController, CLLocationManagerDelega
         locLatitude.text = "\(locValue.latitude)°"
         locLongitude.text = "\(locValue.longitude)°"
     }
-    @IBAction func connectToServer() {
+     func connectToServer() {
         mqtt!.connect()
+        
     }
+
     
     func mqttSetting() {
         let userDefaults = UserDefaults.standard
@@ -147,7 +155,6 @@ extension UITableViewController: CocoaMQTTDelegate {
         print("ack: \(ack)")
         if ack == .accept {
             print("Connectei avec succes")
-            NSLog("Connecté avec succès")
             //            connectButton.text = "SE DÉCONNECTER"
             // change the button state
 //            mqtt.subscribe("dev/data", qos: CocoaMQTTQOS.qos1)
@@ -155,9 +162,6 @@ extension UITableViewController: CocoaMQTTDelegate {
             //            let chatViewController = storyboard?.instantiateViewController(withIdentifier: "ParametersTableViewController") as? ParametersTableViewController
             //            chatViewController?.mqtt = mqtt
             //            navigationController!.pushViewController(chatViewController!, animated: true)
-        }
-        else{
-            print("Nooo connectei")
         }
     }
     
