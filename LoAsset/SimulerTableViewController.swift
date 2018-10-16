@@ -92,9 +92,9 @@ class SimulerTableViewController: UITableViewController, CLLocationManagerDelega
         apiKey = userDefaults.string(forKey: "apikeyValue")
         idClient = userDefaults.string(forKey: "idClientValue")
         nomUtilisateur = userDefaults.string(forKey: "usernameValue")
-        //        print(apiKey!)
-        //        print(nomUtilisateur!)
-        //        print(idClient!)
+//                print(apiKey!)
+//                print(nomUtilisateur!)
+//                print(idClient!)
     }
     
     override func didReceiveMemoryWarning() {
@@ -146,14 +146,18 @@ extension UITableViewController: CocoaMQTTDelegate {
     public func mqtt(_ mqtt: CocoaMQTT, didConnectAck ack: CocoaMQTTConnAck) {
         print("ack: \(ack)")
         if ack == .accept {
+            print("Connectei avec succes")
             NSLog("Connecté avec succès")
             //            connectButton.text = "SE DÉCONNECTER"
             // change the button state
-            mqtt.subscribe("dev/data", qos: CocoaMQTTQOS.qos1)
+//            mqtt.subscribe("dev/data", qos: CocoaMQTTQOS.qos1)
             
             //            let chatViewController = storyboard?.instantiateViewController(withIdentifier: "ParametersTableViewController") as? ParametersTableViewController
             //            chatViewController?.mqtt = mqtt
             //            navigationController!.pushViewController(chatViewController!, animated: true)
+        }
+        else{
+            print("Nooo connectei")
         }
     }
     
