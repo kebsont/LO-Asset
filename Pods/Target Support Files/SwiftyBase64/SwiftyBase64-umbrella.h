@@ -11,6 +11,6 @@
 #endif
 
 
-FOUNDATION_EXPORT double Pods_Lo_AssetVersionNumber;
-FOUNDATION_EXPORT const unsigned char Pods_Lo_AssetVersionString[];
+FOUNDATION_EXPORT double SwiftyBase64VersionNumber;
+FOUNDATION_EXPORT const unsigned char SwiftyBase64VersionString[];
 

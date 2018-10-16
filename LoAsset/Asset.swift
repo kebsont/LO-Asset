@@ -7,7 +7,7 @@
 //
 
 import Foundation
-import LoAsset
+//import LoAsset
 import CSV
 //import utils
 class Asset {

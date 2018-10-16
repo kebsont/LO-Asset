@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="49e-Tb-3d3">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="49e-Tb-3d3">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -407,7 +407,7 @@
                         <outlet property="serverLabel" destination="T7q-jc-hER" id="xtE-aO-11I"/>
                         <outlet property="serverValue" destination="XwB-wc-eb8" id="CZA-ba-3MO"/>
                         <outlet property="usernameValue" destination="XCN-91-o1v" id="WlJ-Sp-7S7"/>
-                        <outlet property="versionApp" destination="qgW-qF-zIa" id="RUQ-2u-seA"/>
+                        <outlet property="versionApp" destination="3dc-2e-044" id="eRl-z4-v79"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gVp-nw-7H1" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -979,19 +979,19 @@
     </scenes>
     <resources>
         <image name="LO_Frame_ENG-2" width="237" height="237"/>
-        <image name="icons8-clouds-filled-40" width="40" height="40"/>
-        <image name="icons8-document-filled-40" width="40" height="40"/>
-        <image name="icons8-download-from-the-cloud-40" width="40" height="40"/>
-        <image name="icons8-drop-of-blood-40" width="40" height="40"/>
-        <image name="icons8-edit-40" width="40" height="40"/>
-        <image name="icons8-key-40" width="40" height="40"/>
-        <image name="icons8-marker-40" width="40" height="40"/>
-        <image name="icons8-phonelink-ring-38" width="38" height="38"/>
-        <image name="icons8-pression-40" width="40" height="40"/>
-        <image name="icons8-qr-code-40" width="40" height="40"/>
-        <image name="icons8-reset-filled-40" width="40" height="40"/>
-        <image name="icons8-settings-filled-40" width="40" height="40"/>
-        <image name="icons8-speed-40" width="40" height="40"/>
-        <image name="icons8-thermometer-40" width="40" height="40"/>
+        <image name="icons8-clouds-filled-40" width="205.71427917480469" height="205.71427917480469"/>
+        <image name="icons8-document-filled-40" width="30" height="30"/>
+        <image name="icons8-download-from-the-cloud-40" width="30" height="30"/>
+        <image name="icons8-drop-of-blood-40" width="205.71427917480469" height="205.71427917480469"/>
+        <image name="icons8-edit-40" width="30" height="30"/>
+        <image name="icons8-key-40" width="30" height="30"/>
+        <image name="icons8-marker-40" width="30" height="30"/>
+        <image name="icons8-phonelink-ring-38" width="28.5" height="28.5"/>
+        <image name="icons8-pression-40" width="30" height="30"/>
+        <image name="icons8-qr-code-40" width="30" height="30"/>
+        <image name="icons8-reset-filled-40" width="30" height="30"/>
+        <image name="icons8-settings-filled-40" width="30" height="30"/>
+        <image name="icons8-speed-40" width="30" height="30"/>
+        <image name="icons8-thermometer-40" width="205.71427917480469" height="205.71427917480469"/>
     </resources>
 </document>

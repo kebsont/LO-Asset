@@ -12,12 +12,14 @@ PODS:
   - MQTTClient/Manager (0.15.1):
     - MQTTClient/Min
   - MQTTClient/Min (0.15.1)
+  - SwiftyBase64 (1.1.1)
   - SwiftyTimer (2.0.0)
 
 DEPENDENCIES:
   - CocoaMQTT
   - CSV.swift (~> 2.2.1)
   - MQTTClient
+  - SwiftyBase64 (~> 1.0)
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
@@ -25,6 +27,7 @@ SPEC REPOS:
     - CocoaMQTT
     - CSV.swift
     - MQTTClient
+    - SwiftyBase64
     - SwiftyTimer
 
 SPEC CHECKSUMS:
@@ -32,8 +35,9 @@ SPEC CHECKSUMS:
   CocoaMQTT: d33ab3cd4e329f9f1cfbb62e25306a318a606616
   CSV.swift: 5bf3338aff82371cb51cc6dc559d7b45a74bab14
   MQTTClient: 92ead4ac75687e7021bcf8d564ff37aaf950d631
+  SwiftyBase64: 8de4de96a08454e742fdda614dff12d2c62ecbe9
   SwiftyTimer: 2efd74b060d69ad4f1496baf5bbedbe132125fcf
 
-PODFILE CHECKSUM: 25cf38183cbe565a8abf19666899e5350d126f75
+PODFILE CHECKSUM: 99a780f273daf3300343bafcbf356548f4d5b4f7
 
 COCOAPODS: 1.5.3
