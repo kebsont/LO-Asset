@@ -43,6 +43,7 @@ class Asset {
     private  var  CHANGE_REVMIN_THRESHOLD_CHANCE: Int = 2; // 1/x chance to switch from increase to decrease
     private  var CHANGE_PRESSURE_THRESHOLD_CHANCE: Int = 2; // 1/x chance to switch from increase to decrease
     
+     var config: DeviceConfig?
     private var telemetry : DeviceDataTelemetry?
     private var telemetryOld : DeviceDataTelemetry?
     private var location: [Double] = [0.0]
@@ -53,22 +54,48 @@ class Asset {
     lazy var locationModeAuto: Bool = false
     let TEMPERATURE_MIN_PROGESS: Int = -20
     let TEMPERATURE_MAX_PROGESS:Int = 120
+    
 
     private var gpsTrackCurrendIdx: Int = 0
     private var gpsTrack = Array(repeating: 0.0, count: 2)
     public var deviceStatus: DeviceStatus?
-//    private var mLocationManager: LocationManager
     var simul = SimulerTableViewController()
+    var constant = ApplicationConstants()
     init(model: String, version: String) {
         telemetry = DeviceDataTelemetry()
-//        config = DeviceConfig()
         location = [0.0, 0.0]
+        telemetryModeAuto = true
 //        simul.telemetrieSwitch.isOn = true
         locationModeAuto = true
-        //load the GPS simulator
-        //deviceStatus = DeviceStatus(modell: model, version: version)
         
+        self.loadGpsTrackSimulator()
+        
+        // Create the Current Device Status (Info)
+        self.deviceStatus = DeviceStatus(version: version)
+        
+        // Get the stored config of the device
+        let defaultCfgRate = DeviceConfigElement(key: ASSET_CONFIG_REFRESH, value: TypeValue.int(IntTypeValue(t: Type.i32, v: Int32(constant.DEFAULT_UPDATE_RATE))))
+        let defaultCFGLog = DeviceConfigElement(key: ASSET_CONFIG_LOG, value: TypeValue.string(StringTypeValue(t: Type.str, v: constant.DEFAULT_LOG_LEVEL)))
+        config = DeviceConfig(elements: [defaultCfgRate, defaultCFGLog])
     }
+    
+//    func createDeviceConfig(_ data: [DeviceConfigElement]) -> Dictionary<String, [String : TypeValue]> {
+//        var toReturn = Dictionary<String, [String : TypeValue]>()
+//        for element in data {
+//            print("ELEMENT: ")
+//            print(element)
+//            switch element.value {
+//            case .string(_) :
+//                toReturn[element.key] = [ "str" : element.value]
+//            default:
+//                toReturn[element.key] = [ "t" : element.value]
+//            }
+//        }
+//        
+//        return toReturn
+//    }
+    
+    
     func loadGpsTrackSimulator()
     {
         var lat: Double
@@ -84,17 +111,20 @@ class Asset {
     }
 
     
-    func createDeviceData(value: DeviceDataTelemetry, loc: [DeviceData]) -> DeviceData {
-        var newData = DeviceData()
-        print("streamID")
-        print(newData?.streamId)
+    func createDeviceData(value: DeviceDataTelemetry, loc: DeviceData.Coord) -> DeviceData {
+        let newData = DeviceData()
         newData?.streamId = (newData?.streamId)!
         newData?.value = value as DeviceDataTelemetry
-        newData?.location.lat = (newData?.location.lat)!
-        newData?.location.lon = (newData?.location.lon)!
+        newData?.location = loc
         newData?.model = "demo"
         return newData!
     }
+    
+//    func getNextGpsFixSimulator() -> Double {
+//        self.location = gpsTrackCurrendIdx
+//        gpsTrackCurrendIdx ++
+//    }
+    
      func setRevminIncrease() -> Bool{
         if (countBeforeCheckRevminThreshold-1 > 0){
             return revminIncrease

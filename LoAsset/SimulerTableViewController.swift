@@ -17,6 +17,7 @@ class SimulerTableViewController: UITableViewController, CLLocationManagerDelega
     var idClient: String?
     var nomUtilisateur: String?
     var apiKey: String?
+    var isConnected: Bool = false
     @IBOutlet weak var connectButton: UIButton!
     @IBAction func connectOrDisconnect(_ sender: UIButton, forEvent event: UIEvent) {
         let currentLabel = connectButton.titleLabel!.text!
@@ -115,6 +116,11 @@ class SimulerTableViewController: UITableViewController, CLLocationManagerDelega
     }
      func connectToServer() {
         mqtt!.connect()
+        if(mqtt!.connect()){
+            isConnected = true
+        }else{
+            isConnected = false
+        }
         
     }
 
@@ -134,7 +140,6 @@ class SimulerTableViewController: UITableViewController, CLLocationManagerDelega
     }
     
 }
-
 extension UITableViewController: CocoaMQTTDelegate {
     // Optional ssl CocoaMQTTDelegate
     public func mqtt(_ mqtt: CocoaMQTT, didReceive trust: SecTrust, completionHandler: @escaping (Bool) -> Void) {
@@ -150,18 +155,43 @@ extension UITableViewController: CocoaMQTTDelegate {
         /// }
         completionHandler(true)
     }
+
     
     public func mqtt(_ mqtt: CocoaMQTT, didConnectAck ack: CocoaMQTTConnAck) {
+        let encoder = JSONEncoder()
+        let constant = ApplicationConstants()
         print("ack: \(ack)")
         if ack == .accept {
-            print("Connectei avec succes")
-            //            connectButton.text = "SE DÉCONNECTER"
-            // change the button state
-//            mqtt.subscribe("dev/data", qos: CocoaMQTTQOS.qos1)
-            
-            //            let chatViewController = storyboard?.instantiateViewController(withIdentifier: "ParametersTableViewController") as? ParametersTableViewController
-            //            chatViewController?.mqtt = mqtt
-            //            navigationController!.pushViewController(chatViewController!, animated: true)
+            let version = "v1.0.0"
+//            isConnected = true
+            print("Connexion success")
+            let ds = DeviceStatus(version: version)
+            let myAsset = Asset(model: UIDevice.current.modelName, version: version)
+            do{
+                encoder.outputFormatting = .prettyPrinted
+                let dataConfig = try encoder.encode(myAsset.config)
+                let dataStatus = try encoder.encode(ds)
+                
+                // Publish the current device status
+                 mqtt.publish(constant.MQTT_TOPIC_PUBLISH_STATUS, withString: String(data: dataStatus, encoding: .utf8)!)
+                
+                // Publish the current device Settings
+                mqtt.publish(constant.MQTT_TOPIC_PUBLISH_CONFIG , withString: String(data: dataConfig, encoding: .utf8)!)
+                
+//                print(String(data: dataStatus, encoding: String.Encoding.utf8)!)
+                
+                // Subscribe to TOPICS for Config, Command and Resource
+                mqtt.subscribe(constant.MQTT_TOPIC_SUBSCRIBE_CONFIG)
+                DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                    mqtt.subscribe(constant.MQTT_TOPIC_SUBSCRIBE_COMMAND)
+                }
+//                DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+//                    mqtt.subscribe(constant.MQTT_TOPIC_SUBSCRIBE_COMMAND)
+//                }
+            } catch {
+                //TODO: handle error
+            }
+         
         }
     }
     

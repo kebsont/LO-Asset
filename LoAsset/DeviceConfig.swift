@@ -23,9 +23,13 @@ struct DeviceConfigElement: Codable {
 }
 
 struct DeviceConfig: Codable {
-    var cfg: Dictionary<String,[String:TypeValue]>
-    init(cfg: Dictionary<String,[String:TypeValue]>) {
-        self.cfg = cfg
+
+    var cfg: Dictionary<String, TypeValue>
+    init(elements: [DeviceConfigElement]) {
+        self.cfg = Dictionary<String, TypeValue>()
+        for element in elements {
+            self.cfg[element.key] = element.value
+        }
     }
 }
 
@@ -137,6 +141,8 @@ let json = """
         }
     }
     """.data(using: .utf8)!
+
+
 
 //let decoder = JSONDecoder()
 //let config = try decoder.decode(DeviceConfig.self, from: json)

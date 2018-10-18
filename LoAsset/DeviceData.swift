@@ -9,27 +9,29 @@
 import Foundation
 class DeviceData{
     var preferences = AppPreferences()
+    var storedStreamId: String = ""
+    var storedTs: String = ""
+    var storedModel: String = ""
+    var storedValue: (Any)? = nil
     enum myTags: String {
         case breakfast, lunch, dinner
     }
     struct Coord {
-        var lat = 0.0, lon = 0.0
+        var lat: Double = 0.0, lon: Double = 0.0
     }
 
     var streamId: String {
         get{
             return preferences.getStreamId()
         }
-        set(newStreamId){
-            self.streamId = newStreamId
-        }
+        set{ storedStreamId = newValue }
     }
     var timestamp: String{
         get{
         return "ts"
         }
         set(newTs){
-        self.timestamp = newTs
+        storedTs = newTs
         }
     }
     var model: String {
@@ -37,7 +39,7 @@ class DeviceData{
             return "m"
         }
         set(newMdl){
-            self.model = newMdl
+            storedModel = newMdl
         }
     }
 //    var objToGet: NSObject
@@ -46,7 +48,7 @@ class DeviceData{
             return  nil
         }
         set(newObj){
-            self.value = newObj
+            storedValue = newObj
         }
     }
     var tags : Set<myTags>?
@@ -64,8 +66,9 @@ class DeviceData{
 
  init?() {
         var model: String
-        var latitude: String
-        var longitude: String
+        var loc: [Coord]
+//        var latitude: String
+//        var longitude: String
         var tagsJSON: String
         var tags: Set <myTags> = []
         self.tags = tags

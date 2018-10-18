@@ -35,4 +35,13 @@ class AppPreferences{
         return AUTO_RECONNECT == true
     }
     
+//    public func setCfgParameter(cfgKey: String, cfgParameter: DeviceConfig){
+//        switch <#value#> {
+//        case <#pattern#>:
+//            <#code#>
+//        default:
+//            <#code#>
+//        }
+//    }
+    
 }
