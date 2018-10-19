@@ -110,10 +110,15 @@ class ParametersTableViewController: UITableViewController, ServerSelectionDeleg
         let modelName = UIDevice.current.modelName
         
         deviceModel.text = modelName
-        
+        let idClientValueForStream: String?
+        let iDAsset: String?
         if let identifierForVendor = UIDevice.current.identifierForVendor {
-            idClientValue.text = "\(modelName)-\(identifierForVendor)"
+            idClientValue.text = "\(modelName)\(identifierForVendor)"
+            idClientValueForStream = "\(modelName):\(identifierForVendor)"
+            iDAsset = "\(identifierForVendor)"
             userDefaults.set(idClientValue.text, forKey: "idClientValue")
+            userDefaults.set(idClientValueForStream, forKey: "idClientValueForStream")
+            userDefaults.set(iDAsset, forKey: "iDAsset")
             userDefaults.synchronize()
             idAsset.text = "\(identifierForVendor)"
         }

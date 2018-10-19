@@ -6,6 +6,7 @@
 //  Copyright © 2018 Orange. All rights reserved.
 //
 import UIKit
+import Foundation
 import MapKit
 import CocoaMQTT
 import os.log
@@ -45,7 +46,7 @@ class SimulerTableViewController: UITableViewController, CLLocationManagerDelega
     @IBOutlet weak var humiditeSlider: UISlider!
     @IBOutlet weak var locLatitude: UILabel!
     @IBOutlet weak var locLongitude: UILabel!
-    @IBAction func changeTelemetrie(_ sender: UISwitch) {
+    @IBAction func changeTelemetrie(telemetrieSwitch: UISwitch) {
         if telemetrieSwitch.isOn {
             temperatureSlider.isEnabled = false
             humiditeSlider.isEnabled = false
@@ -83,7 +84,9 @@ class SimulerTableViewController: UITableViewController, CLLocationManagerDelega
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        telemetrieSwitch.isOn = false
+        
+        telemetrieSwitch.addTarget(self, action: Selector("changeTelemetrie:"), for: UIControlEvents.valueChanged)
+        telemetrieSwitch.isOn = true
         self.locationManager.requestWhenInUseAuthorization()
         if CLLocationManager.locationServicesEnabled(){
             locationManager.delegate = self
@@ -128,7 +131,7 @@ class SimulerTableViewController: UITableViewController, CLLocationManagerDelega
     func mqttSetting() {
         let userDefaults = UserDefaults.standard
         apiKey = userDefaults.string(forKey: "apikeyValue")
-        idClient = userDefaults.string(forKey: "idClientValue")
+        idClient = userDefaults.string(forKey: "iDAsset")
         nomUtilisateur = userDefaults.string(forKey: "usernameValue")
         let clientID = idClient!
         mqtt = CocoaMQTT(clientID: clientID, host: defaultHost, port: 1883)
@@ -155,11 +158,28 @@ extension UITableViewController: CocoaMQTTDelegate {
         /// }
         completionHandler(true)
     }
+    
+//     func createScheduler()->DeviceData{
+//        let encoder = JSONEncoder()
+//        var dataToSend: DeviceData? = nil
+//        var mqtt: CocoaMQTT? = nil
+//        let version = "v1.0.0"
+//        let myAsset = Asset(model: UIDevice.current.modelName, version: version)
+//        let constant = ApplicationConstants()
+//
+//        _ = Timer.scheduledTimer(withTimeInterval: TimeInterval(interval), repeats: true) { timer in
+////
+//             dataToSend =  dataD
+//        }
+//        return (dataToSend ?? nil)!
+//    }
 
     
     public func mqtt(_ mqtt: CocoaMQTT, didConnectAck ack: CocoaMQTTConnAck) {
         let encoder = JSONEncoder()
         let constant = ApplicationConstants()
+        let interval = constant.DEFAULT_UPDATE_RATE
+
         print("ack: \(ack)")
         if ack == .accept {
             let version = "v1.0.0"
@@ -168,6 +188,7 @@ extension UITableViewController: CocoaMQTTDelegate {
             let ds = DeviceStatus(version: version)
             let myAsset = Asset(model: UIDevice.current.modelName, version: version)
             do{
+                
                 encoder.outputFormatting = .prettyPrinted
                 let dataConfig = try encoder.encode(myAsset.config)
                 let dataStatus = try encoder.encode(ds)
@@ -178,25 +199,47 @@ extension UITableViewController: CocoaMQTTDelegate {
                 // Publish the current device Settings
                 mqtt.publish(constant.MQTT_TOPIC_PUBLISH_CONFIG , withString: String(data: dataConfig, encoding: .utf8)!)
                 
-//                print(String(data: dataStatus, encoding: String.Encoding.utf8)!)
                 
                 // Subscribe to TOPICS for Config, Command and Resource
                 mqtt.subscribe(constant.MQTT_TOPIC_SUBSCRIBE_CONFIG)
                 DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
                     mqtt.subscribe(constant.MQTT_TOPIC_SUBSCRIBE_COMMAND)
                 }
-//                DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-//                    mqtt.subscribe(constant.MQTT_TOPIC_SUBSCRIBE_COMMAND)
-//                }
             } catch {
                 //TODO: handle error
             }
+//                DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+//                    mqtt.subscribe(constant.MQTT_TOPIC_SUBSCRIBE_COMMAND)
+//                }
+               
+                    _ = Timer.scheduledTimer(withTimeInterval: TimeInterval(interval), repeats: true) { timer in
+                        var telemetry = myAsset.getNexTelemetry()
+                        var loc: [Double] = myAsset.getNextLocation()
+                        var dataD: DeviceData =  myAsset.createDeviceData(value: telemetry, loc: loc)
+                  do{
+                    var newData = try encoder.encode(dataD)
+                        mqtt.publish(constant.MQTT_TOPIC_PUBLISH_DATA, withString: String(data: newData, encoding: .utf8)!)
+                  }catch{
+                    //TODO: handle error
+                        }
+                        
+                }
+               
+                
+                
+                
+           
          
         }
     }
     
     public func mqtt(_ mqtt: CocoaMQTT, didStateChangeTo state: CocoaMQTTConnState) {
+        let constant = ApplicationConstants()
         print("new state: \(state)")
+        if(state  == .disconnected){
+            mqtt.unsubscribe(constant.MQTT_TOPIC_SUBSCRIBE_CONFIG)
+            mqtt.unsubscribe(constant.MQTT_TOPIC_SUBSCRIBE_COMMAND)
+        }
     }
     
     public func mqtt(_ mqtt: CocoaMQTT, didPublishMessage message: CocoaMQTTMessage, id: UInt16) {

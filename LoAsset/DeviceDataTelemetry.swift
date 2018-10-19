@@ -54,12 +54,16 @@ public class DeviceDataTelemetry {
         pressure = 1000;
         doorOpen = false;
     }
-    init(value: DeviceDataTelemetry) {
-        temperature = value.temperature;
-        hydrometry = value.hydrometry;
-        revmin = value.revmin;
-        CO2 = value.CO2;
-        pressure = value.pressure;
-        doorOpen = value.doorOpen;
+//    init(value: DeviceDataTelemetry) {
+    public func clone(value: DeviceDataTelemetry) -> DeviceDataTelemetry{
+        let clone: DeviceDataTelemetry = DeviceDataTelemetry()
+        
+        clone.temperature = value.temperature;
+        clone.hydrometry = value.hydrometry;
+        clone.revmin = value.revmin;
+        clone.CO2 = value.CO2;
+        clone.pressure = value.pressure;
+        clone.doorOpen = value.doorOpen;
+        return clone
     }
 }

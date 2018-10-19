@@ -46,7 +46,7 @@ class Asset {
      var config: DeviceConfig?
     private var telemetry : DeviceDataTelemetry?
     private var telemetryOld : DeviceDataTelemetry?
-    private var location: [Double] = [0.0]
+    private var location: [Double]
     private var locationOld: Double = 0.0
 //    private var config: DeviceConfig?
     private var resources: DeviceResources?
@@ -57,13 +57,13 @@ class Asset {
     
 
     private var gpsTrackCurrendIdx: Int = 0
-    private var gpsTrack = Array(repeating: 0.0, count: 2)
+    private var gpsTrack: [Double] = []
     public var deviceStatus: DeviceStatus?
     var simul = SimulerTableViewController()
     var constant = ApplicationConstants()
     init(model: String, version: String) {
         telemetry = DeviceDataTelemetry()
-        location = [0.0, 0.0]
+        location = [0.0,0.0]
         telemetryModeAuto = true
 //        simul.telemetrieSwitch.isOn = true
         locationModeAuto = true
@@ -91,7 +91,7 @@ class Asset {
 //                toReturn[element.key] = [ "t" : element.value]
 //            }
 //        }
-//        
+//
 //        return toReturn
 //    }
     
@@ -107,23 +107,39 @@ class Asset {
             lon = ((row[2]) as NSString).doubleValue
             gpsTrack.append(lat)
             gpsTrack.append(lon)
+//            print("gpsTrack")
+//            print(gpsTrack)
         }
     }
 
     
-    func createDeviceData(value: DeviceDataTelemetry, loc: DeviceData.Coord) -> DeviceData {
-        let newData = DeviceData()
-        newData?.streamId = (newData?.streamId)!
-        newData?.value = value as DeviceDataTelemetry
+    func createDeviceData(value: DeviceDataTelemetry, loc: [Double]) -> DeviceData {
+        let preferences = AppPreferences()
+        var newData = DeviceData()
+        newData?.streamId = preferences.getStreamId()
+        newData?.value = value 
         newData?.location = loc
         newData?.model = "demo"
         return newData!
     }
     
-//    func getNextGpsFixSimulator() -> Double {
-//        self.location = gpsTrackCurrendIdx
-//        gpsTrackCurrendIdx ++
-//    }
+    func getNextGpsFixSimulator() -> [Double] {
+//        print(gpsTrack)
+        self.location = [gpsTrack[gpsTrackCurrendIdx],gpsTrack[gpsTrackCurrendIdx+1]]
+        gpsTrackCurrendIdx += 1
+        if (gpsTrackCurrendIdx >= gpsTrack.count) {
+            gpsTrackCurrendIdx = 0
+        }
+
+        return location
+    }
+    func getNextLocation() -> [Double]{
+        if (self.locationModeAuto == true){
+            location = self.getNextGpsFixSimulator()
+            //notifyDeviceLocationChange
+        }
+        return location
+    }
     
      func setRevminIncrease() -> Bool{
         if (countBeforeCheckRevminThreshold-1 > 0){
@@ -156,7 +172,8 @@ class Asset {
             pressureIncrease = true
         }
         revminIncrease = setRevminIncrease()
-        let srandInt = Int(arc4random_uniform(UInt32(-(REVMIN_CHANGE_STEP/2)) - UInt32( REVMIN_CHANGE_STEP)) + 1)
+        let srandInt = Int.random(in: -REVMIN_CHANGE_STEP/2...REVMIN_CHANGE_STEP)
+//        let srandInt = Int(arc4random_uniform(UInt32(-(REVMIN_CHANGE_STEP/2)) - UInt32( REVMIN_CHANGE_STEP)) + 1)
         if revminIncrease {
             lastRevmin += srandInt
         }else{
@@ -175,10 +192,12 @@ class Asset {
         telemetry?.temperature = lastTemperature
         pressureIncrease = setPressureIncrease()
         if pressureIncrease {
-            lastPressure += Int(arc4random_uniform(UInt32(-(PRESSURE_CHANGE_STEP/2)) - UInt32( PRESSURE_CHANGE_STEP)) + 1)
+            lastPressure += Int.random(in: -PRESSURE_CHANGE_STEP/2...PRESSURE_CHANGE_STEP)
+//            lastPressure += Int(arc4random_uniform(UInt32(-(PRESSURE_CHANGE_STEP/2)) - UInt32( PRESSURE_CHANGE_STEP)) + 1)
          }
             else{
-                lastPressure -= Int(arc4random_uniform(UInt32(-(PRESSURE_CHANGE_STEP/2)) - UInt32( PRESSURE_CHANGE_STEP)) + 1)
+            lastPressure -= Int.random(in: -PRESSURE_CHANGE_STEP/2...PRESSURE_CHANGE_STEP)
+//                lastPressure -= Int(arc4random_uniform(UInt32(-(PRESSURE_CHANGE_STEP/2)) - UInt32( PRESSURE_CHANGE_STEP)) + 1)
             }
         if(lastPressure > MAX_PRESSURE){
             pressureIncrease = false
@@ -189,13 +208,15 @@ class Asset {
         telemetry?.pressure = Swift.min(Swift.max(MIN_PRESSURE, lastPressure), MAX_PRESSURE)
        lastCO2 = lastPressure * MAX_CO2/MAX_PRESSURE
         telemetry?.CO2 = Swift.min(Swift.max(0, lastCO2), MAX_CO2)
+
         return telemetry!
     }
-    var Simuler = SimulerTableViewController()
     func getNexTelemetry() -> DeviceDataTelemetry{
-        if (Simuler.telemetrieSwitch.isOn) {
+//        if (simul.telemetrieSwitch.isOn) {
             telemetry = self.getNextTelemetrySimulator()
-        }
+//        }
+        print("telemetry")
+        print(telemetry!.hydrometry)
         return telemetry!
     }
     
@@ -217,7 +238,20 @@ func LoadFileAsString() -> String
          return contentAsString
     }
    
-    
-
-
-
+extension Int
+{
+    static func random(range: Range<Int> ) -> Int
+    {
+        var offset = 0
+        
+        if range.startIndex < 0   // allow negative ranges
+        {
+            offset = abs(range.startIndex)
+        }
+        
+        let mini = UInt32(range.startIndex + offset)
+        let maxi = UInt32(range.endIndex   + offset)
+        
+        return Int(mini + arc4random_uniform(maxi - mini)) - offset
+    }
+}

@@ -7,71 +7,68 @@
 //
 
 import Foundation
-class DeviceData{
-    var preferences = AppPreferences()
-    var storedStreamId: String = ""
-    var storedTs: String = ""
-    var storedModel: String = ""
-    var storedValue: (Any)? = nil
-    enum myTags: String {
-        case breakfast, lunch, dinner
-    }
-    struct Coord {
-        var lat: Double = 0.0, lon: Double = 0.0
-    }
+import UIKit
+//
+enum myTags: String {
+    case breakfast, lunch, dinner
+}
+var preferences = AppPreferences()
+var v: (Any)? = nil
 
-    var streamId: String {
-        get{
-            return preferences.getStreamId()
+struct DeviceData: Codable{
+//var tags : [myTags] = []
+        var s: String = ""
+        var ts: String = ""
+        var m: String = "NNNNN"
+        var loc: [Double] = [0.0, 0.0]
+        var streamId: String {
+            get{
+                return preferences.getStreamId()
+            }
+            set{ s = newValue }
         }
-        set{ storedStreamId = newValue }
-    }
-    var timestamp: String{
-        get{
-        return "ts"
+        var timestamp: String{
+            get{
+            return "ts"
+            }
+            set(newTs){
+            ts = newTs
+            }
         }
-        set(newTs){
-        storedTs = newTs
+        var model: String {
+            get{
+                return "m"
+            }
+            set(newMdl){
+                m = newMdl
+            }
         }
-    }
-    var model: String {
-        get{
-            return "m"
-        }
-        set(newMdl){
-            storedModel = newMdl
-        }
-    }
-//    var objToGet: NSObject
     var value :Any? {
+                get{
+                    return  nil
+                }
+                set(newObj){
+                    v = newObj
+                }
+            }
+    var location: [Double] {
         get{
-            return  nil
+            return  [0.0, 0.0]
         }
         set(newObj){
-            storedValue = newObj
+            loc = newObj
         }
     }
-    var tags : Set<myTags>?
-    var newLoc =  Coord()
-    var location: Coord{
-        get{
-            let x = 0.0, y = 0.0
-            return Coord(lat: x, lon: y)
+     init?() {
+            var model: String = "m"
+            var loc: [Double] = []
+            var tagsJSON: String
+            var value: NSObject? = nil
+            var tags: [myTags] = []
+//            self.tags = tags
+            self.location = loc
+            self.model = model
+            self.value = value
         }
-        set(locToSet){
-            newLoc.lat = locToSet.lat
-            newLoc.lon = locToSet.lon
-        }
-    }
-
- init?() {
-        var model: String
-        var loc: [Coord]
-//        var latitude: String
-//        var longitude: String
-        var tagsJSON: String
-        var tags: Set <myTags> = []
-        self.tags = tags
-    }
 }
 

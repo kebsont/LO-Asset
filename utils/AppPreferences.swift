@@ -7,29 +7,33 @@
 //
 
 import Foundation
-
+import UIKit
 class AppPreferences{
     var API_KEY : String = "apiKey"
     var AUTO_RECONNECT : Bool = false
     var MQTT_SERVER:String = "mqttServer"
     var MQTT_PROTOCOL:String = "mqttProtocol"
     var ASSET_RESSOURCE_PREFIX:String = "assetResource."
-    var ASSET_NAMESPACE: String = "IPHONE"
+    var ASSET_NAMESPACE: String = UIDevice.current.modelName
     var assetId: String = ""
-    
     func getUsernameDeviceMode() -> String {
         return "json+device"
     }
     
     func getStreamId() -> String {
-        return ASSET_NAMESPACE + "\(assetId)"
+        let userDefaults = UserDefaults.standard
+        let idClientVal = userDefaults.string(forKey: "idClientValue")
+//        return ASSET_NAMESPACE + "\(assetId)"
+        return idClientVal ?? ASSET_NAMESPACE + "\(assetId)"
     }
     
     func getShortClientId() -> String {
         return ASSET_NAMESPACE + ":\(assetId)"
     }
     func getClientId() -> String {
-        return "urn:lo:nsid:\(getShortClientId)"
+        let userDefaults = UserDefaults.standard
+        let idClientValForStream = userDefaults.string(forKey: "idClientValueForStream")
+        return "urn:lo:nsid:\(String(describing: idClientValForStream))" ?? "urn:lo:nsid:\( getShortClientId())"
     }
     func getAutoReconnectStatus() -> Bool {
         return AUTO_RECONNECT == true
