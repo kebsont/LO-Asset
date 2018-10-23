@@ -31,7 +31,7 @@ class SimulerTableViewController: UITableViewController, CLLocationManagerDelega
                     connectButton.setTitle("CONNECTER", for: .normal)
                 }
     }
-    @IBOutlet weak var telemetrieSwitch: UISwitch!
+//    @IBOutlet weak var telemetrieSwitch: UISwitch!
     @IBOutlet weak var temperatureSlider: UISlider!
     @IBOutlet weak var tempLabel: UILabel!
     @IBOutlet weak var humidLabel: UILabel!
@@ -47,8 +47,9 @@ class SimulerTableViewController: UITableViewController, CLLocationManagerDelega
     @IBOutlet weak var humiditeSlider: UISlider!
     @IBOutlet weak var locLatitude: UILabel!
     @IBOutlet weak var locLongitude: UILabel!
-    @IBAction func changeTelemetrie(telemetrieSwitch: UISwitch) {
-        if telemetrieSwitch.isOn {
+    
+    @IBAction func switchAuto(_ sender: UISwitch) {
+        if sender.isOn == true {
             MonSwitch = true
             temperatureSlider.isEnabled = false
             humiditeSlider.isEnabled = false
@@ -63,6 +64,7 @@ class SimulerTableViewController: UITableViewController, CLLocationManagerDelega
             coSlider.isEnabled = true
             pressionSlider.isEnabled = true
         }
+        
     }
     @IBAction func humidValueChanged(_ sender: UISlider) {
         let currentHumid = Int(sender.value)
@@ -88,8 +90,7 @@ class SimulerTableViewController: UITableViewController, CLLocationManagerDelega
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        telemetrieSwitch.addTarget(self, action: Selector("changeTelemetrie:"), for: UIControlEvents.valueChanged)
-        telemetrieSwitch.isOn = true
+
         self.locationManager.requestWhenInUseAuthorization()
         if CLLocationManager.locationServicesEnabled(){
             locationManager.delegate = self

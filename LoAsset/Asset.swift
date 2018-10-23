@@ -64,7 +64,6 @@ class Asset {
         telemetry = DeviceDataTelemetry()
         location = [0.0,0.0]
         telemetryModeAuto = true
-//        simul.telemetrieSwitch.isOn = true
         locationModeAuto = true
         
         self.loadGpsTrackSimulator()

@@ -647,7 +647,7 @@
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <color key="onTintColor" red="0.0" green="0.58980089430000004" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <connections>
-                                                        <action selector="changeTelemetrie:" destination="B6W-RS-5Hm" eventType="valueChanged" id="54n-Bp-bBW"/>
+                                                        <action selector="switchAuto:" destination="B6W-RS-5Hm" eventType="valueChanged" id="0q8-7M-PnZ"/>
                                                     </connections>
                                                 </switch>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Auto" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="B5e-Nu-mMn">
@@ -891,7 +891,6 @@
                         <outlet property="pressionSlider" destination="OlB-Fm-aI6" id="mGb-fU-yNV"/>
                         <outlet property="rpmLabel" destination="sx1-pw-zJO" id="w06-Da-6PS"/>
                         <outlet property="rpmSlider" destination="EMs-Ce-T7G" id="tZX-bc-oIl"/>
-                        <outlet property="telemetrieSwitch" destination="udA-cp-7RF" id="Bbb-Xh-bdP"/>
                         <outlet property="tempLabel" destination="FIu-eK-IFE" id="Gp5-Rv-ctL"/>
                         <outlet property="temperatureSlider" destination="fRg-y9-nnZ" id="L28-pA-gww"/>
                     </connections>
