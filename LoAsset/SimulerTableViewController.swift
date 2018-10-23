@@ -19,6 +19,7 @@ class SimulerTableViewController: UITableViewController, CLLocationManagerDelega
     var nomUtilisateur: String?
     var apiKey: String?
     var isConnected: Bool = false
+    var MonSwitch: Bool = true
     @IBOutlet weak var connectButton: UIButton!
     @IBAction func connectOrDisconnect(_ sender: UIButton, forEvent event: UIEvent) {
         let currentLabel = connectButton.titleLabel!.text!
@@ -48,12 +49,14 @@ class SimulerTableViewController: UITableViewController, CLLocationManagerDelega
     @IBOutlet weak var locLongitude: UILabel!
     @IBAction func changeTelemetrie(telemetrieSwitch: UISwitch) {
         if telemetrieSwitch.isOn {
+            MonSwitch = true
             temperatureSlider.isEnabled = false
             humiditeSlider.isEnabled = false
             rpmSlider.isEnabled = false
             coSlider.isEnabled = false
             pressionSlider.isEnabled = false
         }else{
+            MonSwitch = false
             temperatureSlider.isEnabled = true
             humiditeSlider.isEnabled = true
             rpmSlider.isEnabled = true
@@ -214,8 +217,10 @@ extension UITableViewController: CocoaMQTTDelegate {
                
                     _ = Timer.scheduledTimer(withTimeInterval: TimeInterval(interval), repeats: true) { timer in
                         var telemetry = myAsset.getNexTelemetry()
+                        print("Voici le CO2")
+                        print(telemetry.getCo2())
                         var loc: [Double] = myAsset.getNextLocation()
-                        var dataD: DeviceData =  myAsset.createDeviceData(value: telemetry, loc: loc)
+                        var dataD: DataDevice =  myAsset.createDataDevice(value: telemetry, loc: loc)
                   do{
                     var newData = try encoder.encode(dataD)
                         mqtt.publish(constant.MQTT_TOPIC_PUBLISH_DATA, withString: String(data: newData, encoding: .utf8)!)

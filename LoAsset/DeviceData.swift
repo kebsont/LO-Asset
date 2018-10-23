@@ -13,7 +13,6 @@ enum myTags: String {
     case breakfast, lunch, dinner
 }
 var preferences = AppPreferences()
-var v: (Any)? = nil
 
 struct DeviceData: Codable{
 //var tags : [myTags] = []
@@ -21,6 +20,9 @@ struct DeviceData: Codable{
         var ts: String = ""
         var m: String = "NNNNN"
         var loc: [Double] = [0.0, 0.0]
+    var v: V?
+    
+//    var e: NSObject
         var streamId: String {
             get{
                 return preferences.getStreamId()
@@ -43,14 +45,17 @@ struct DeviceData: Codable{
                 m = newMdl
             }
         }
-    var value :Any? {
+    var valuee :V {
                 get{
-                    return  nil
+                    return  v!
                 }
                 set(newObj){
                     v = newObj
                 }
             }
+    public mutating func setCo2(newCo2: Int) {
+        v?.cO2 = newCo2
+    }
     var location: [Double] {
         get{
             return  [0.0, 0.0]
@@ -60,15 +65,17 @@ struct DeviceData: Codable{
         }
     }
      init?() {
-            var model: String = "m"
-            var loc: [Double] = []
-            var tagsJSON: String
-            var value: NSObject? = nil
-            var tags: [myTags] = []
-//            self.tags = tags
-            self.location = loc
-            self.model = model
-            self.value = value
+//            var model: String = "m"
+//            var loc: [Double] = []
+//            var tagsJSON: String
+//            var value: V? = nil
+////            var tags: [myTags] = []
+//
+//
+//            location = loc
+//            model = m
+//            valuee = value!
         }
 }
+
 

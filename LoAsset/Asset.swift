@@ -48,7 +48,6 @@ class Asset {
     private var telemetryOld : DeviceDataTelemetry?
     private var location: [Double]
     private var locationOld: Double = 0.0
-//    private var config: DeviceConfig?
     private var resources: DeviceResources?
     lazy var telemetryModeAuto: Bool = false
     lazy var locationModeAuto: Bool = false
@@ -79,22 +78,6 @@ class Asset {
         config = DeviceConfig(elements: [defaultCfgRate, defaultCFGLog])
     }
     
-//    func createDeviceConfig(_ data: [DeviceConfigElement]) -> Dictionary<String, [String : TypeValue]> {
-//        var toReturn = Dictionary<String, [String : TypeValue]>()
-//        for element in data {
-//            print("ELEMENT: ")
-//            print(element)
-//            switch element.value {
-//            case .string(_) :
-//                toReturn[element.key] = [ "str" : element.value]
-//            default:
-//                toReturn[element.key] = [ "t" : element.value]
-//            }
-//        }
-//
-//        return toReturn
-//    }
-    
     
     func loadGpsTrackSimulator()
     {
@@ -113,14 +96,34 @@ class Asset {
     }
 
     
-    func createDeviceData(value: DeviceDataTelemetry, loc: [Double]) -> DeviceData {
+//    func createDeviceData(value: DeviceDataTelemetry, loc: [Double]) -> DeviceData {
+//        let preferences = AppPreferences()
+//        let constant = ApplicationConstants()
+//        var newData = DeviceData()
+//        newData?.streamId = preferences.getStreamId()
+//        newData?.valuee = value
+//        newData?.location = loc
+//        newData?.model = constant.PUBLISHED_MODEL
+//        return newData!
+//    }
+//
+    func createDataDevice(value: DeviceDataTelemetry, loc: [Double]) -> DataDevice{
+        let encoder = JSONEncoder()
+        encoder.outputFormatting = .prettyPrinted
         let preferences = AppPreferences()
-        var newData = DeviceData()
-        newData?.streamId = preferences.getStreamId()
-        newData?.value = value 
-        newData?.location = loc
-        newData?.model = "demo"
-        return newData!
+        let constant = ApplicationConstants()
+        var newData = DataDevice()
+
+        newData.s = preferences.getStreamId()
+        newData.loc = loc
+        newData.m = constant.PUBLISHED_MODEL
+        newData.v.cO2 = value.getCo2()
+        newData.v.hydrometry = value.getHydrometrie()
+        newData.v.doorOpen = value.getDoorOpen()
+        newData.v.temperature = value.getTemperature()
+        newData.v.revmin = value.getRevmin()
+        newData.v.pressure = value.getPressure()
+        return newData
     }
     
     func getNextGpsFixSimulator() -> [Double] {
@@ -208,14 +211,16 @@ class Asset {
         telemetry?.pressure = Swift.min(Swift.max(MIN_PRESSURE, lastPressure), MAX_PRESSURE)
        lastCO2 = lastPressure * MAX_CO2/MAX_PRESSURE
         telemetry?.CO2 = Swift.min(Swift.max(0, lastCO2), MAX_CO2)
-
+        print("la randomisaaaaaaaaaaaaaaaaaaaaation")
+        print(telemetry?.CO2)
         return telemetry!
     }
     func getNexTelemetry() -> DeviceDataTelemetry{
-//        if (simul.telemetrieSwitch.isOn) {
+        if self.simul.MonSwitch {
             telemetry = self.getNextTelemetrySimulator()
-//        }
-        print("telemetry")
+
+        }
+        print("telemetry Hydrometrie")
         print(telemetry!.hydrometry)
         return telemetry!
     }
