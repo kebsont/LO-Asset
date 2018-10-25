@@ -4,7 +4,6 @@
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -252,6 +251,9 @@
                                                     <state key="normal" title="Scanner QR Code">
                                                         <color key="titleColor" red="1" green="0.14913141730000001" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     </state>
+                                                    <connections>
+                                                        <segue destination="gEZ-nj-sHc" kind="show" id="UMT-7J-ONK"/>
+                                                    </connections>
                                                 </button>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="icons8-edit-40" translatesAutoresizingMaskIntoConstraints="NO" id="eJz-1q-ceG">
                                                     <rect key="frame" x="263" y="6" width="30" height="30"/>
@@ -699,7 +701,7 @@
                                                     <rect key="frame" x="241" y="6" width="118" height="30"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <connections>
-                                                        <action selector="humidValueChanged:" destination="B6W-RS-5Hm" eventType="valueChanged" id="hVK-EI-vNi"/>
+                                                        <action selector="humidValueChanged:" destination="B6W-RS-5Hm" eventType="valueChanged" id="db9-z5-mFU"/>
                                                     </connections>
                                                 </slider>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="0%" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qvl-gE-lXD">
@@ -883,8 +885,9 @@
                         <outlet property="coLabel" destination="Lp4-Fu-kKF" id="Eok-DX-XdQ"/>
                         <outlet property="coSlider" destination="lJG-ab-SNT" id="HBq-oE-Iia"/>
                         <outlet property="connectButton" destination="Pxc-LQ-KLh" id="KDn-7U-aFg"/>
+                        <outlet property="getThatHumidite" destination="6Qc-ir-RB4" id="XKW-Ff-pn2"/>
                         <outlet property="humidLabel" destination="qvl-gE-lXD" id="lRp-ga-YnV"/>
-                        <outlet property="humiditeSlider" destination="6Qc-ir-RB4" id="fNw-Go-3uJ"/>
+                        <outlet property="humiditeSlider" destination="6Qc-ir-RB4" id="G3Z-Hv-9H3"/>
                         <outlet property="locLatitude" destination="ixo-IQ-W1x" id="dic-Tb-TYX"/>
                         <outlet property="locLongitude" destination="Zvh-iH-3iB" id="xWq-fm-vuT"/>
                         <outlet property="pressionLabel" destination="byf-lj-Fu2" id="lCT-0q-6W8"/>
@@ -975,6 +978,42 @@
             </objects>
             <point key="canvasLocation" x="0.0" y="0.0"/>
         </scene>
+        <!--View Controller-->
+        <scene sceneID="YuA-hC-nl6">
+            <objects>
+                <viewController id="gEZ-nj-sHc" customClass="QRViewController" customModule="LoAsset" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="05h-xJ-ujL"/>
+                        <viewControllerLayoutGuide type="bottom" id="NVP-m1-JyF"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="hkC-3i-Dua">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="square" translatesAutoresizingMaskIntoConstraints="NO" id="N7g-wW-8Ur">
+                                <rect key="frame" x="27.5" y="173.5" width="320" height="320"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="320" id="ckg-F3-yum"/>
+                                    <constraint firstAttribute="width" constant="320" id="uLE-dH-qJz"/>
+                                </constraints>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="N7g-wW-8Ur" firstAttribute="centerX" secondItem="hkC-3i-Dua" secondAttribute="centerX" id="fE0-U8-lnx"/>
+                            <constraint firstItem="N7g-wW-8Ur" firstAttribute="centerY" secondItem="hkC-3i-Dua" secondAttribute="centerY" id="gMv-0U-4CD"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="8ay-IK-wSU"/>
+                    </view>
+                    <connections>
+                        <outlet property="square" destination="N7g-wW-8Ur" id="nV6-JK-LK3"/>
+                        <segue destination="Coc-Y3-TSg" kind="show" identifier="toQR" id="3db-tM-vsh"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="z8e-fQ-rQu" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-2062" y="2282"/>
+        </scene>
     </scenes>
     <resources>
         <image name="LO_Frame_ENG-2" width="237" height="237"/>
@@ -992,5 +1031,9 @@
         <image name="icons8-settings-filled-40" width="30" height="30"/>
         <image name="icons8-speed-40" width="30" height="30"/>
         <image name="icons8-thermometer-40" width="205.71427917480469" height="205.71427917480469"/>
+        <image name="square" width="276" height="276"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="3db-tM-vsh"/>
+    </inferredMetricsTieBreakers>
 </document>

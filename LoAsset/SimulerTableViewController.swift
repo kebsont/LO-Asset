@@ -20,6 +20,11 @@ class SimulerTableViewController: UITableViewController, CLLocationManagerDelega
     var apiKey: String?
     var isConnected: Bool = false
     var MonSwitch: Bool = true
+    var currentHumid: Int = 0
+    var currentRpm: Int = 0
+    var currentCo: Int = 0
+    var currentTemp: Int = 0
+    var currentPression: Int = 0
     @IBOutlet weak var connectButton: UIButton!
     @IBAction func connectOrDisconnect(_ sender: UIButton, forEvent event: UIEvent) {
         let currentLabel = connectButton.titleLabel!.text!
@@ -66,25 +71,53 @@ class SimulerTableViewController: UITableViewController, CLLocationManagerDelega
         }
         
     }
+    @IBOutlet weak var getThatHumidite: UISlider!
     @IBAction func humidValueChanged(_ sender: UISlider) {
-        let currentHumid = Int(sender.value)
+         currentHumid = Int(sender.value)
         humidLabel.text = "\(currentHumid)%"
     }
     @IBAction func tempValueChanged(_ sender: UISlider) {
-        let currentTemp = Int(sender.value)
+         currentTemp = Int(sender.value)
         tempLabel.text = "\(currentTemp)°"
     }
     @IBAction func rpmValueChanged(_ sender: UISlider) {
-        let currentRpm = Int(sender.value)
+         currentRpm = Int(sender.value)
         rpmLabel.text = "\(currentRpm) rpm"
     }
     @IBAction func coValueChanged(_ sender: UISlider) {
-        let currentCo = Int(sender.value)
+         currentCo = Int(sender.value)
         coLabel.text = "\(currentCo) ppm"
     }
     @IBAction func pressionValueChanged(_ sender: UISlider) {
-        let currentPression = Int(sender.value)
+         currentPression = Int(sender.value)
         pressionLabel.text = "\(currentPression) mBars"
+    }
+//    public func getHumidite() -> Int {
+//        var newVal:Int = 0
+//        newVal =
+//        return newVal
+//    }
+    public func getCO2() -> Int {
+        if var thisCO2:Int? = self.currentCo
+        {
+            thisCO2 =  currentRpm
+            return thisCO2!
+        }
+    }
+    
+    public func getTemp() -> Int {
+        if var thisTemp:Int? = self.currentTemp
+        {
+            thisTemp =  currentTemp
+            return thisTemp!
+        }
+    }
+    public func getPression() -> Int {
+        if var thisPression:Int? = self.currentPression
+        {
+            thisPression =  currentPression
+            return thisPression!
+        }
     }
     
     override func viewDidLoad() {
@@ -140,7 +173,9 @@ class SimulerTableViewController: UITableViewController, CLLocationManagerDelega
         let clientID = idClient!
         mqtt = CocoaMQTT(clientID: clientID, host: defaultHost, port: 1883)
         mqtt!.username = nomUtilisateur!
-        mqtt!.password = apiKey!
+        if(apiKey != nil){
+            mqtt!.password = apiKey!
+        }
         mqtt!.willMessage = CocoaMQTTWill(topic: "/cmd", message: "dieout")
         mqtt!.keepAlive = 60
         mqtt!.delegate = self

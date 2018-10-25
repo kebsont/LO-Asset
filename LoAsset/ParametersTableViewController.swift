@@ -8,17 +8,19 @@
 import UIKit
 
 class ParametersTableViewController: UITableViewController, ServerSelectionDelegate {
+  
+
     func didSelectServerType(serverType: ServerType) {
         switch serverType {
         case .orangeM2MProd:
-            serverValue.text = "OrangeM2M Prod"
+            serverValue?.text = "OrangeM2M Prod"
             break
         case .other:
-            serverValue.text = "OrangeM2M PreProd"
+            serverValue?.text = "OrangeM2M PreProd"
             break
         }
     }
-    
+    var TheApiKeyFromScan: String? = "Pas de clef d'Api"
     @IBOutlet weak var versionApp: UILabel!
     @IBOutlet weak var serverLabel: UILabel!
     @IBOutlet weak var protocoleValue: UILabel!
@@ -32,26 +34,14 @@ class ParametersTableViewController: UITableViewController, ServerSelectionDeleg
     @IBAction func reinitAction(_ sender: Any) {
         apikeyValue.text = "Pas de clef d'API"
     }
-    
     @IBAction func manuelAction(_ sender: UIButton) {
         showInputDialog()
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        //        self.title = "Paramètres"
-        apikeyValue.text = "ad842965e9f94bd5833b5fa7caf3086f"
-        //        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Add", style: .plain, target: self, action: #selector(addTapped))
+        apikeyValue?.text = TheApiKeyFromScan
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .compose, target: self, action: #selector(addTapped))
-        
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
-        
-        //        if let navController = navigationController {
-        //            System.clearNavigationBar(forBar: navController.navigationBar)
-        //            navController.view.backgroundColor = .clear
-        //        }
-        
         
         let userDefaults = UserDefaults.standard
         let currentServerTypeValue = userDefaults.integer(forKey: SERVER_TYPE_KEY)
@@ -59,9 +49,9 @@ class ParametersTableViewController: UITableViewController, ServerSelectionDeleg
         if let serverType = ServerType(rawValue: currentServerTypeValue) {
             self.didSelectServerType(serverType: serverType)
         }
-        userDefaults.set(idClientValue.text, forKey: "idClientValue")
-        userDefaults.set(usernameValue.text, forKey: "usernameValue")
-        userDefaults.set(apikeyValue.text, forKey: "apikeyValue")
+        userDefaults.set(idClientValue?.text, forKey: "idClientValue")
+        userDefaults.set(usernameValue?.text, forKey: "usernameValue")
+        userDefaults.set(apikeyValue?.text, forKey: "apikeyValue")
         userDefaults.synchronize()
     }
     
@@ -81,13 +71,15 @@ class ParametersTableViewController: UITableViewController, ServerSelectionDeleg
         }
     }
     
+
+    
     func showInputDialog(){
         let alertController = UIAlertController(title: "Clef d'API", message: "Merci de saisir la Clef d'API", preferredStyle: .alert)
         let confirmAction = UIAlertAction(title: "Entrer", style: .default){(_) in
             let apikey = alertController.textFields?[0].text
-            self.apikeyValue.text = apikey
+            self.apikeyValue?.text = apikey
             let userDefaults = UserDefaults.standard
-            userDefaults.set(self.apikeyValue.text, forKey: "apikeyValue")
+            userDefaults.set(self.apikeyValue?.text, forKey: "apikeyValue")
             userDefaults.synchronize()
         }
         let cancelAction = UIAlertAction(title: "Annuler", style: .cancel){(_) in}
@@ -104,26 +96,30 @@ class ParametersTableViewController: UITableViewController, ServerSelectionDeleg
         
     }
     
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+
         let userDefaults = UserDefaults.standard
         let modelName = UIDevice.current.modelName
         
-        deviceModel.text = modelName
+        deviceModel?.text = modelName
         let idClientValueForStream: String?
         let iDAsset: String?
         if let identifierForVendor = UIDevice.current.identifierForVendor {
-            idClientValue.text = "\(modelName)\(identifierForVendor)"
+            idClientValue?.text = "\(modelName)\(identifierForVendor)"
             idClientValueForStream = "\(modelName):\(identifierForVendor)"
             iDAsset = "\(identifierForVendor)"
-            userDefaults.set(idClientValue.text, forKey: "idClientValue")
+            userDefaults.set(idClientValue?.text, forKey: "idClientValue")
             userDefaults.set(idClientValueForStream, forKey: "idClientValueForStream")
             userDefaults.set(iDAsset, forKey: "iDAsset")
             userDefaults.synchronize()
-            idAsset.text = "\(identifierForVendor)"
+            idAsset?.text = "\(identifierForVendor)"
         }
-        userDefaults.set(apikeyValue.text, forKey: "apikeyValue")
+        userDefaults.set(apikeyValue?.text, forKey: "apikeyValue")
         userDefaults.synchronize()
+        
+        
         
     }
     

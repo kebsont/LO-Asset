@@ -15,7 +15,11 @@ class Asset {
     let ASSET_CONFIG_LOG : String = "logLevel"
     let ASSET_COMMAND_BUZZER : String = "buzzer"
     let ASSET_RESOURCE_SPLASH_ID : String = "demo_splash_screen"
-    
+    var currentHumid: Int = 0
+    var currentRpm: Int = 0
+    var currentCo: Int = 0
+    var currentTemp: Int = 0
+    var currentPression: Int = 0
     // Data Simulation
     private var NUMBER_BEFORE_OPEN_DOOR = 10000;
     lazy var countBeforeOpenDoor : Int = NUMBER_BEFORE_OPEN_DOOR
@@ -76,8 +80,7 @@ class Asset {
         let defaultCFGLog = DeviceConfigElement(key: ASSET_CONFIG_LOG, value: TypeValue.string(StringTypeValue(t: Type.str, v: constant.DEFAULT_LOG_LEVEL)))
         config = DeviceConfig(elements: [defaultCfgRate, defaultCFGLog])
     }
-    
-    
+
     func loadGpsTrackSimulator()
     {
         var lat: Double
@@ -161,6 +164,35 @@ class Asset {
             return  randInt>(100/CHANGE_PRESSURE_THRESHOLD_CHANCE)
         }
     }
+    
+//    func getNextRealTelemetry() -> DeviceDataTelemetry{
+////        print("AVANT TOUT")
+////        print(self.simul.coLabel.text!)
+//        if(countBeforeOpenDoor-1 > 0){
+//            telemetry?.doorOpen = false
+//        }else{
+//            telemetry?.doorOpen = true
+//        }
+//        var thisRevmin:Int? = 0
+//        var thisHumidity:Int? = 0
+//        var thisTemp:Int? = 0
+//        var thisPressure:Int? = 0
+//        var thisCO2:Int? = 0
+//
+////        thisRevmin = Int(self.simul.rpmLabel.text!)
+////        telemetry?.revmin = (self.simul.getRevmin())
+//        print("HEY MAMA")
+////        print(simul.getHumidite())
+//        telemetry?.CO2 = (self.simul.getCO2())
+////        telemetry?.hydrometry = self.simul.getHumidite()
+//        telemetry?.pressure = (self.simul.getPression())
+//        telemetry?.temperature = (self.simul.getTemp())
+//
+//
+//
+//        return telemetry!
+//    }
+    
     func getNextTelemetrySimulator() -> DeviceDataTelemetry{
         if(countBeforeOpenDoor-1 > 0){
             telemetry?.doorOpen = false
@@ -175,7 +207,6 @@ class Asset {
         }
         revminIncrease = setRevminIncrease()
         let srandInt = Int.random(in: -REVMIN_CHANGE_STEP/2...REVMIN_CHANGE_STEP)
-//        let srandInt = Int(arc4random_uniform(UInt32(-(REVMIN_CHANGE_STEP/2)) - UInt32( REVMIN_CHANGE_STEP)) + 1)
         if revminIncrease {
             lastRevmin += srandInt
         }else{
@@ -210,17 +241,16 @@ class Asset {
         telemetry?.pressure = Swift.min(Swift.max(MIN_PRESSURE, lastPressure), MAX_PRESSURE)
        lastCO2 = lastPressure * MAX_CO2/MAX_PRESSURE
         telemetry?.CO2 = Swift.min(Swift.max(0, lastCO2), MAX_CO2)
-        print("la randomisaaaaaaaaaaaaaaaaaaaaation")
-        print(telemetry?.CO2)
+
         return telemetry!
     }
     func getNexTelemetry() -> DeviceDataTelemetry{
         if self.simul.MonSwitch {
             telemetry = self.getNextTelemetrySimulator()
-
         }
-        print("telemetry Hydrometrie")
-        print(telemetry!.hydrometry)
+//        else{
+//            telemetry = self.getNextRealTelemetry()
+//        }
         return telemetry!
     }
     

@@ -27,6 +27,7 @@
 		7D77F16B2178846A00D67AC1 /* ApplicationConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D77F16A2178846A00D67AC1 /* ApplicationConstants.swift */; };
 		7D77F16D217A20E700D67AC1 /* DataDevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D77F16C217A20E600D67AC1 /* DataDevice.swift */; };
 		7D77F16E217E07CE00D67AC1 /* DeviceData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D2D3B592141727000B7FBBC /* DeviceData.swift */; };
+		7D77F172218093CB00D67AC1 /* QRViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D77F171218093CB00D67AC1 /* QRViewController.swift */; };
 		7DEA4275212D5D8900CA900E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DEA4274212D5D8900CA900E /* AppDelegate.swift */; };
 		7DEA427C212D5D8900CA900E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7DEA427A212D5D8900CA900E /* Main.storyboard */; };
 		7DEA427E212D5D8A00CA900E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7DEA427D212D5D8A00CA900E /* Assets.xcassets */; };
@@ -70,6 +71,7 @@
 		7D77F1682177821D00D67AC1 /* ConfigDevice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigDevice.swift; sourceTree = "<group>"; };
 		7D77F16A2178846A00D67AC1 /* ApplicationConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplicationConstants.swift; sourceTree = "<group>"; };
 		7D77F16C217A20E600D67AC1 /* DataDevice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataDevice.swift; sourceTree = "<group>"; };
+		7D77F171218093CB00D67AC1 /* QRViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRViewController.swift; sourceTree = "<group>"; };
 		7DEA4271212D5D8900CA900E /* LoAsset.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LoAsset.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7DEA4274212D5D8900CA900E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7DEA427B212D5D8900CA900E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -162,6 +164,7 @@
 				7DECE1492174E15100B3748B /* TabBarVC.swift */,
 				7D157B13213D676F002E8484 /* ServerSelectionTableViewController.swift */,
 				7DECE1472174DF4D00B3748B /* ParametersTableViewController.swift */,
+				7D77F171218093CB00D67AC1 /* QRViewController.swift */,
 				7D157AF4213A3B39002E8484 /* FirstViewController.swift */,
 				7DECE14F2174E1F800B3748B /* SimulerTableViewController.swift */,
 				7D157AF021394DF8002E8484 /* ServerSelectTableViewController.swift */,
@@ -308,6 +311,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				7D77F16E217E07CE00D67AC1 /* DeviceData.swift in Sources */,
+				7D77F172218093CB00D67AC1 /* QRViewController.swift in Sources */,
 				7DECE14A2174E15100B3748B /* TabBarVC.swift in Sources */,
 				7D2D3B6021417E3C00B7FBBC /* DeviceStatus.swift in Sources */,
 				7D77F16D217A20E700D67AC1 /* DataDevice.swift in Sources */,
