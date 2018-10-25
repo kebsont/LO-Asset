@@ -9,7 +9,9 @@ import UIKit
 import Foundation
 import MapKit
 import CocoaMQTT
+import Toast_Swift
 import os.log
+
 class SimulerTableViewController: UITableViewController, CLLocationManagerDelegate {
     let defaultHost = "liveobjects.orange-business.com"
     var locationManager = CLLocationManager()
@@ -220,10 +222,12 @@ extension UITableViewController: CocoaMQTTDelegate {
         let interval = constant.DEFAULT_UPDATE_RATE
 
         print("ack: \(ack)")
+        self.view.makeToast("\(ack)", duration: 1.0, position: .top)
         if ack == .accept {
             let version = "v1.0.0"
 //            isConnected = true
             print("Connexion success")
+            self.view.makeToast("Connecté avec succès", duration: 3.0, position: .top)
             let ds = DeviceStatus(version: version)
             let myAsset = Asset(model: UIDevice.current.modelName, version: version)
             do{
@@ -278,6 +282,8 @@ extension UITableViewController: CocoaMQTTDelegate {
         let constant = ApplicationConstants()
         print("new state: \(state)")
         if(state  == .disconnected){
+            self.view.makeToast("Déconnecté avec succès", duration: 3.0, position: .top)
+
             mqtt.unsubscribe(constant.MQTT_TOPIC_SUBSCRIBE_CONFIG)
             mqtt.unsubscribe(constant.MQTT_TOPIC_SUBSCRIBE_COMMAND)
         }
@@ -316,6 +322,7 @@ extension UITableViewController: CocoaMQTTDelegate {
     
     public  func mqttDidDisconnect(_ mqtt: CocoaMQTT, withError err: Error?) {
         print("\(err.description)")
+         self.view.makeToast("\(err.description)", duration: 3.0, position: .top)
     }
 }
 

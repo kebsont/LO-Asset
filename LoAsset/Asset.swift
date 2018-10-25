@@ -92,23 +92,10 @@ class Asset {
             lon = ((row[2]) as NSString).doubleValue
             gpsTrack.append(lat)
             gpsTrack.append(lon)
-//            print("gpsTrack")
-//            print(gpsTrack)
         }
     }
 
-    
-//    func createDeviceData(value: DeviceDataTelemetry, loc: [Double]) -> DeviceData {
-//        let preferences = AppPreferences()
-//        let constant = ApplicationConstants()
-//        var newData = DeviceData()
-//        newData?.streamId = preferences.getStreamId()
-//        newData?.valuee = value
-//        newData?.location = loc
-//        newData?.model = constant.PUBLISHED_MODEL
-//        return newData!
-//    }
-//
+
     func createDataDevice(value: DeviceDataTelemetry, loc: [Double]) -> DataDevice{
         let encoder = JSONEncoder()
         encoder.outputFormatting = .prettyPrinted
@@ -129,7 +116,6 @@ class Asset {
     }
     
     func getNextGpsFixSimulator() -> [Double] {
-//        print(gpsTrack)
         self.location = [gpsTrack[gpsTrackCurrendIdx],gpsTrack[gpsTrackCurrendIdx+1]]
         gpsTrackCurrendIdx += 1
         if (gpsTrackCurrendIdx >= gpsTrack.count) {
@@ -165,33 +151,6 @@ class Asset {
         }
     }
     
-//    func getNextRealTelemetry() -> DeviceDataTelemetry{
-////        print("AVANT TOUT")
-////        print(self.simul.coLabel.text!)
-//        if(countBeforeOpenDoor-1 > 0){
-//            telemetry?.doorOpen = false
-//        }else{
-//            telemetry?.doorOpen = true
-//        }
-//        var thisRevmin:Int? = 0
-//        var thisHumidity:Int? = 0
-//        var thisTemp:Int? = 0
-//        var thisPressure:Int? = 0
-//        var thisCO2:Int? = 0
-//
-////        thisRevmin = Int(self.simul.rpmLabel.text!)
-////        telemetry?.revmin = (self.simul.getRevmin())
-//        print("HEY MAMA")
-////        print(simul.getHumidite())
-//        telemetry?.CO2 = (self.simul.getCO2())
-////        telemetry?.hydrometry = self.simul.getHumidite()
-//        telemetry?.pressure = (self.simul.getPression())
-//        telemetry?.temperature = (self.simul.getTemp())
-//
-//
-//
-//        return telemetry!
-//    }
     
     func getNextTelemetrySimulator() -> DeviceDataTelemetry{
         if(countBeforeOpenDoor-1 > 0){
@@ -248,9 +207,6 @@ class Asset {
         if self.simul.MonSwitch {
             telemetry = self.getNextTelemetrySimulator()
         }
-//        else{
-//            telemetry = self.getNextRealTelemetry()
-//        }
         return telemetry!
     }
     
