@@ -269,12 +269,6 @@ extension UITableViewController: CocoaMQTTDelegate {
                         }
                         
                 }
-               
-                
-                
-                
-           
-         
         }
     }
     
@@ -295,11 +289,32 @@ extension UITableViewController: CocoaMQTTDelegate {
     
     public func mqtt(_ mqtt: CocoaMQTT, didPublishAck id: UInt16) {
         print("id: \(id)")
+        
     }
     
     public  func mqtt(_ mqtt: CocoaMQTT, didReceiveMessage message: CocoaMQTTMessage, id: UInt16 ) {
+        let constant = ApplicationConstants()
+//        let encoder = JSONEncoder()
+//        encoder.outputFormatting = .prettyPrinted
+//        var response = try encoder.encode(message.["cid"])
         print("message: \(message.string.description), id: \(id)")
+        switch message.topic {
+        case constant.MQTT_TOPIC_SUBSCRIBE_CONFIG:
+//            Modifier le log level
+//            self.view.makeToast("Commande reçue: \(message.string!)", duration: 3.0, position: .top)
+            break
+        case constant.MQTT_TOPIC_SUBSCRIBE_COMMAND:
+            self.view.makeToast("Commande reçue: \(message.string!)", duration: 3.0, position: .top)
+            break
+        case constant.MQTT_TOPIC_SUBSCRIBE_RESOURCE:
+            self.view.makeToast("New Resource Available: \(message.string!)", duration: 3.0, position: .top)
+            break
+        default:
+            break
+        }
         
+//        mqtt.publish(constant.MQTT_TOPIC_RESPONSE_COMMAND , withString: message.string! )
+//        mqtt.publish(<#T##topic: String##String#>, withString: <#T##String#>)
         //        let name = NSNotification.Name(rawValue: "MQTTMessageNotification" \ msg!)
         //        NotificationCenter.default.post(name: name, object: self, userInfo: ["message": message.string!, "topic": message.topic])
     }

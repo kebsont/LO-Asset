@@ -82,6 +82,7 @@ func metadataOutput(_ output: AVCaptureMetadataOutput, didOutput metadataObjects
                         else { print("No Api Key found")
                                     return
                             }
+                    print(g_text)
                     self.g_var = g_text
                     self.session.stopRunning()
                     self.performQR()

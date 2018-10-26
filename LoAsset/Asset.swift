@@ -7,9 +7,7 @@
 //
 
 import Foundation
-//import LoAsset
 import CSV
-//import utils
 class Asset {
     let ASSET_CONFIG_REFRESH : String = "updateRate"
     let ASSET_CONFIG_LOG : String = "logLevel"
@@ -92,6 +90,8 @@ class Asset {
             lon = ((row[2]) as NSString).doubleValue
             gpsTrack.append(lat)
             gpsTrack.append(lon)
+//            print("GPSTRACK")
+//            print(gpsTrack)
         }
     }
 
@@ -116,8 +116,12 @@ class Asset {
     }
     
     func getNextGpsFixSimulator() -> [Double] {
-        self.location = [gpsTrack[gpsTrackCurrendIdx],gpsTrack[gpsTrackCurrendIdx+1]]
-        gpsTrackCurrendIdx += 1
+        print("VOICII")
+        print(gpsTrackCurrendIdx)
+        print(gpsTrackCurrendIdx+1)
+        self.location =
+            [gpsTrack[gpsTrackCurrendIdx],gpsTrack[gpsTrackCurrendIdx+1]]
+        gpsTrackCurrendIdx += 2
         if (gpsTrackCurrendIdx >= gpsTrack.count) {
             gpsTrackCurrendIdx = 0
         }
