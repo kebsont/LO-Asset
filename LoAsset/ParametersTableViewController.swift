@@ -40,12 +40,16 @@ class ParametersTableViewController: UITableViewController, ServerSelectionDeleg
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        apikeyValue?.text = TheApiKeyFromScan
-        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .compose, target: self, action: #selector(addTapped))
+//        apikeyValue?.text = TheApiKeyFromScan
+//        navigationItem.title = "LO Asset"
+//        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .compose, target: self, action: #selector(addTapped))
         
         let userDefaults = UserDefaults.standard
         let currentServerTypeValue = userDefaults.integer(forKey: SERVER_TYPE_KEY)
-        
+        if let myApiKey = userDefaults.object(forKey: "apikeyValue"){
+            apikeyValue?.text = myApiKey as! String
+
+        }
         if let serverType = ServerType(rawValue: currentServerTypeValue) {
             self.didSelectServerType(serverType: serverType)
         }

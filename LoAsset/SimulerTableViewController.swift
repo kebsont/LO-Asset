@@ -77,6 +77,7 @@ class SimulerTableViewController: UITableViewController, CLLocationManagerDelega
     @IBAction func humidValueChanged(_ sender: UISlider) {
          currentHumid = Int(sender.value)
         humidLabel.text = "\(currentHumid)%"
+        print(currentHumid)
     }
     @IBAction func tempValueChanged(_ sender: UISlider) {
          currentTemp = Int(sender.value)
@@ -153,8 +154,8 @@ class SimulerTableViewController: UITableViewController, CLLocationManagerDelega
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]){
         let locValue:CLLocationCoordinate2D = manager.location!.coordinate
-        locLatitude.text = "\(locValue.latitude)°"
-        locLongitude.text = "\(locValue.longitude)°"
+        locLatitude.text =  "\(round(locValue.latitude*1000000)/1000000)°"
+        locLongitude.text = "\(round(locValue.longitude*1000000)/1000000)°"
     }
      func connectToServer() {
         mqtt!.connect()
@@ -222,7 +223,7 @@ extension UITableViewController: CocoaMQTTDelegate {
         let interval = constant.DEFAULT_UPDATE_RATE
 
         print("ack: \(ack)")
-        self.view.makeToast("\(ack)", duration: 1.0, position: .top)
+        self.view.makeToast("\(ack)", duration: 3.0, position: .center)
         if ack == .accept {
             let version = "v1.0.0"
 //            isConnected = true
@@ -257,8 +258,6 @@ extension UITableViewController: CocoaMQTTDelegate {
                
                     _ = Timer.scheduledTimer(withTimeInterval: TimeInterval(interval), repeats: true) { timer in
                         var telemetry = myAsset.getNexTelemetry()
-                        print("Voici le CO2")
-                        print(telemetry.getCo2())
                         var loc: [Double] = myAsset.getNextLocation()
                         var dataD: DataDevice =  myAsset.createDataDevice(value: telemetry, loc: loc)
                   do{
@@ -297,14 +296,31 @@ extension UITableViewController: CocoaMQTTDelegate {
 //        let encoder = JSONEncoder()
 //        encoder.outputFormatting = .prettyPrinted
 //        var response = try encoder.encode(message.["cid"])
-        print("message: \(message.string.description), id: \(id)")
+        print("messageEEE: \(message.string.description), id: \(id)")
+        
         switch message.topic {
         case constant.MQTT_TOPIC_SUBSCRIBE_CONFIG:
+            do{
+            let decoder = JSONDecoder()
+                let cfgData = (message.string)!.data(using: .utf8)!
+                let decodedCfg = try decoder.decode(DeviceConfig.self, from: cfgData)
+                
+                print("Configgg")
+                for cf in decodedCfg.cfg{
+                    print(cf)
+                }
+//                print(decodedCfg.cfg["updateRate"].["v"])
+            }catch{
+                //HANdle error
+            }
+           
 //            Modifier le log level
 //            self.view.makeToast("Commande reçue: \(message.string!)", duration: 3.0, position: .top)
             break
         case constant.MQTT_TOPIC_SUBSCRIBE_COMMAND:
-            self.view.makeToast("Commande reçue: \(message.string!)", duration: 3.0, position: .top)
+            if(message.string! == "buzzer"){
+                self.view.makeToast("Commande Buzzer reçue:", duration: 3.0, position: .top)
+            }
             break
         case constant.MQTT_TOPIC_SUBSCRIBE_RESOURCE:
             self.view.makeToast("New Resource Available: \(message.string!)", duration: 3.0, position: .top)

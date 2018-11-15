@@ -8,6 +8,7 @@
 
 import UIKit
 import AVFoundation
+import Toast_Swift
 
 class QRViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate {
     
@@ -84,6 +85,10 @@ func metadataOutput(_ output: AVCaptureMetadataOutput, didOutput metadataObjects
                             }
                     print(g_text)
                     self.g_var = g_text
+                    let userDefaults = UserDefaults.standard
+                    userDefaults.set(g_text, forKey: "apikeyValue")
+                    userDefaults.synchronize()
+                     self.view.makeToast("API Key scanné avec succès:", duration: 3.0, position: .top)
                     self.session.stopRunning()
                     self.performQR()
 //                    break
