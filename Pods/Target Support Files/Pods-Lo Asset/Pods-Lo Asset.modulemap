@@ -1,6 +1,0 @@
-framework module Pods_Lo_Asset {
-  umbrella header "Pods-Lo Asset-umbrella.h"
-
-  export *
-  module * { export * }
-}

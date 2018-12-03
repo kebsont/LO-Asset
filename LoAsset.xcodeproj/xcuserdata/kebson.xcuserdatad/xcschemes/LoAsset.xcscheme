@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "0930"
+   LastUpgradeVersion = "1000"
    version = "1.3">
    <BuildAction
       parallelizeBuildables = "YES"
@@ -14,10 +14,10 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "1A505273307854D24CC6EED29E8D3A86"
-               BuildableName = "Pods_Lo_Asset.framework"
-               BlueprintName = "Pods-Lo Asset"
-               ReferencedContainer = "container:Pods.xcodeproj">
+               BlueprintIdentifier = "7DEA4270212D5D8900CA900E"
+               BuildableName = "LoAsset.app"
+               BlueprintName = "LoAsset"
+               ReferencedContainer = "container:LoAsset.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -29,6 +29,15 @@
       shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
       </Testables>
+      <MacroExpansion>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "7DEA4270212D5D8900CA900E"
+            BuildableName = "LoAsset.app"
+            BlueprintName = "LoAsset"
+            ReferencedContainer = "container:LoAsset.xcodeproj">
+         </BuildableReference>
+      </MacroExpansion>
       <AdditionalOptions>
       </AdditionalOptions>
    </TestAction>
@@ -42,15 +51,23 @@
       debugDocumentVersioning = "YES"
       debugServiceExtension = "internal"
       allowLocationSimulation = "YES">
-      <MacroExpansion>
+      <BuildableProductRunnable
+         runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "1A505273307854D24CC6EED29E8D3A86"
-            BuildableName = "Pods_Lo_Asset.framework"
-            BlueprintName = "Pods-Lo Asset"
-            ReferencedContainer = "container:Pods.xcodeproj">
+            BlueprintIdentifier = "7DEA4270212D5D8900CA900E"
+            BuildableName = "LoAsset.app"
+            BlueprintName = "LoAsset"
+            ReferencedContainer = "container:LoAsset.xcodeproj">
          </BuildableReference>
-      </MacroExpansion>
+      </BuildableProductRunnable>
+      <EnvironmentVariables>
+         <EnvironmentVariable
+            key = "OS_ACTIVITY_MODE"
+            value = "disable"
+            isEnabled = "NO">
+         </EnvironmentVariable>
+      </EnvironmentVariables>
       <AdditionalOptions>
       </AdditionalOptions>
    </LaunchAction>
@@ -60,6 +77,16 @@
       savedToolIdentifier = ""
       useCustomWorkingDirectory = "NO"
       debugDocumentVersioning = "YES">
+      <BuildableProductRunnable
+         runnableDebuggingMode = "0">
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "7DEA4270212D5D8900CA900E"
+            BuildableName = "LoAsset.app"
+            BlueprintName = "LoAsset"
+            ReferencedContainer = "container:LoAsset.xcodeproj">
+         </BuildableReference>
+      </BuildableProductRunnable>
    </ProfileAction>
    <AnalyzeAction
       buildConfiguration = "Debug">

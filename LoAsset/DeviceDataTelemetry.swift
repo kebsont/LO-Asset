@@ -15,6 +15,8 @@ public class DeviceDataTelemetry {
     public var CO2: Int
     public var pressure: Int
     public var doorOpen: Bool
+    
+    //Functions
     func getTemperature() -> Int{
         return temperature
     }
@@ -29,6 +31,10 @@ public class DeviceDataTelemetry {
         hydrometry = newHydro
     }
     
+    func getRevmin() -> Int{
+        return revmin
+    }
+    
     public func setRevmin(newRevmin: Int) {
         revmin = newRevmin
     }
@@ -39,6 +45,13 @@ public class DeviceDataTelemetry {
     public func setCo2(newCo2: Int) {
         CO2 = newCo2
     }
+    func getPressure() -> Int{
+        return pressure
+    }
+    public func setPressure(newPressure: Int) {
+        pressure = newPressure
+    }
+    
     func getDoorOpen() -> Bool{
         return false
     }
@@ -54,12 +67,23 @@ public class DeviceDataTelemetry {
         pressure = 1000;
         doorOpen = false;
     }
-    init(value: DeviceDataTelemetry) {
-        temperature = value.temperature;
-        hydrometry = value.hydrometry;
-        revmin = value.revmin;
-        CO2 = value.CO2;
-        pressure = value.pressure;
-        doorOpen = value.doorOpen;
+//    init(value: DeviceDataTelemetry) {
+    public func clone(value: DeviceDataTelemetry) -> DeviceDataTelemetry{
+        var clone: DeviceDataTelemetry = DeviceDataTelemetry()
+        
+        clone.temperature = value.temperature;
+        clone.hydrometry = value.hydrometry;
+        clone.revmin = value.revmin;
+        clone.CO2 = value.CO2;
+        clone.pressure = value.pressure;
+        clone.doorOpen = value.doorOpen;
+        return clone
     }
+}
+
+
+extension DeviceDataTelemetry: Encodable {
+//    public required convenience init(from decoder: Decoder) throws {
+//        <#code#>
+//    }
 }
