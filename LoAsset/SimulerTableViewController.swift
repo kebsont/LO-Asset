@@ -220,12 +220,12 @@ extension UITableViewController: CocoaMQTTDelegate {
     public func mqtt(_ mqtt: CocoaMQTT, didConnectAck ack: CocoaMQTTConnAck) {
         let encoder = JSONEncoder()
         let constant = ApplicationConstants()
+        let preferences = AppPreferences()
         let interval = constant.DEFAULT_UPDATE_RATE
-
+        let version = preferences.AppVersion
         print("ack: \(ack)")
         self.view.makeToast("\(ack)", duration: 3.0, position: .center)
         if ack == .accept {
-            let version = "v1.0.0"
 //            isConnected = true
             print("Connexion success")
             self.view.makeToast("Connecté avec succès", duration: 3.0, position: .top)

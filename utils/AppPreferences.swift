@@ -16,6 +16,7 @@ class AppPreferences{
     var ASSET_RESSOURCE_PREFIX:String = "assetResource."
     var ASSET_NAMESPACE: String = UIDevice.current.modelName
     var assetId: String = ""
+    var AppVersion: String = "v1.0.0"
     func getUsernameDeviceMode() -> String {
         return "json+device"
     }

@@ -35,6 +35,7 @@ class QRViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate
         }
         guard let captureDevice = deviceDiscoverySession.devices.first else {
             print("Failed to get the camera device")
+            self.view.makeToast("Failed to get the camera device", duration: 3.0, position: .top)
             return
         }
         
